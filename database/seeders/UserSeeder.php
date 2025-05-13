@@ -13,23 +13,19 @@ class UserSeeder extends Seeder
      */
     public function run(): void
     {
-        $users = [
-            [
+        if (!User::where('username', 'admin')->exists()) {
+            User::create([
                 'username' => 'admin',
                 'email' => 'admin@upi.edu',
-                'password' => bcrypt('admin'),
-                'role' => 'admin',
-            ],
-            [
+                'password' => bcrypt('admin123'),
+                'role' => 'admin'
+            ], [
                 'username' => 'dosen',
                 'email' => 'dosen@upi.edu',
                 'password' => bcrypt('dosen'),
-                'role' => 'dosen',
-            ],
-        ];
-
-        foreach ($users as $user) {
-            User::create($user);
+                'role' => 'dosen'
+            ]);
         }
+
     }
 }

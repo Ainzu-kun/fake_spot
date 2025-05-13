@@ -9,4 +9,4 @@ php artisan migrate --force
 php artisan db:seed --force
 
 # Start apache
-apache2-foreground
+exec apache2-foreground
