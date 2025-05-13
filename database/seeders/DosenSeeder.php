@@ -13,16 +13,23 @@ class DosenSeeder extends Seeder
      */
     public function run(): void
     {
-        $dosens = [
-            [
+        if(!Dosen::where('id', 1)->exists()){
+            Dosen::create([
                 'nama' => 'Jaki Dosen S.T., M.T.',
                 'jenis_kelamin' => 'L',
                 'user_id' => 2,
-            ],
-        ];
-
-        foreach ($dosens as $dosen) {
-            Dosen::create($dosen);
+            ]);
         }
+        // $dosens = [
+        //     [
+        //         'nama' => 'Jaki Dosen S.T., M.T.',
+        //         'jenis_kelamin' => 'L',
+        //         'user_id' => 2,
+        //     ],
+        // ];
+
+        // foreach ($dosens as $dosen) {
+        //     Dosen::create($dosen);
+        // }
     }
 }
