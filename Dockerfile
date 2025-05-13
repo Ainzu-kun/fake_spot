@@ -34,6 +34,6 @@ RUN chown -R www-data:www-data /var/www/html \
 COPY ./entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
 
-# Expose port 8080
-EXPOSE 8080
+# Expose port 80
+EXPOSE 80
 CMD ["/entrypoint.sh"]
