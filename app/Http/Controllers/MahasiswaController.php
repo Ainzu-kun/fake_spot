@@ -37,7 +37,7 @@ class MahasiswaController extends Controller
     }
 
     public function download_template() {
-        $file = storage_path('app/download/template-data-mahasiswa.csv');
+        $file = public_path('download/template-data-mahasiswa.csv');
         return response()->download($file);
     }
 
