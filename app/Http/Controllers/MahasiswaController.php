@@ -30,7 +30,7 @@ class MahasiswaController extends Controller
 
     public function create($dosen_id) {
         $dosen = Dosen::findOrFail($dosen_id);
-        $semesters = Semester::orderBy('tahun_ajaran', 'asc')
+        $semesters = Semester::orderBy('tahun_ajaran', 'desc')
                             ->orderBy('semester', 'asc')
                             ->get();
         return view('dosen.mahasiswa.create', compact('dosen', 'semesters'));
@@ -49,7 +49,6 @@ class MahasiswaController extends Controller
             'semester_id.required' => 'Semester harus dipilih.',
             'semester_id.exists' => 'Semester tidak valid.',
             'file.required' => 'File harus diunggah.',
-            'file.mimes' => 'File harus berupa file CSV.',
             'file.max' => 'Ukuran file tidak boleh lebih dari 5 MB.',
         ]);
 
@@ -121,7 +120,7 @@ class MahasiswaController extends Controller
 
     public function edit($study_id) {
         $study = Study::where('id', $study_id)->first();
-        $semesters = Semester::orderBy('tahun_ajaran', 'asc')
+        $semesters = Semester::orderBy('tahun_ajaran', 'desc')
                             ->orderBy('semester', 'asc')
                             ->get();
 

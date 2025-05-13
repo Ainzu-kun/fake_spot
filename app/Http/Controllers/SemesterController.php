@@ -8,7 +8,7 @@ use App\Models\Semester;
 class SemesterController extends Controller
 {
     public function index() {
-        $semesters = Semester::orderBy('tahun_ajaran', 'asc')
+        $semesters = Semester::orderBy('tahun_ajaran', 'desc')
                             ->orderBy('semester', 'asc')
                             ->get();
         return view('admin.semester.index', compact('semesters'));
