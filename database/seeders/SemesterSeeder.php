@@ -14,7 +14,7 @@ class SemesterSeeder extends Seeder
     public function run(): void
     {
         if(!Semester::where('id', 1)->exists()) {
-            Semester::create([
+            Semester::insert([
                 'semester' => 1,
                 'tahun_ajaran' => '2024',
             ], [
