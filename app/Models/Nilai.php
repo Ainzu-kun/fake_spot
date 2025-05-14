@@ -15,13 +15,13 @@ class Nilai extends Model
         'point',
         'tugas',
         'pre_uts',
-        'kuis',
+        'kuis_1',
         'uts',
         'pre_uas',
-        'kuis',
+        'kuis_2',
         'uas',
         'IPK',
-        'grade'
+        'grade',
     ];
 
     public function studies() {

@@ -4,11 +4,13 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
+
 use App\Models\Dosen;
 use App\Models\Mahasiswa;
 use App\Models\MataKuliah;
 use App\Models\Study;
 use App\Models\Semester;
+use App\Models\Nilai;
 
 class MahasiswaController extends Controller
 {
@@ -82,10 +84,14 @@ class MahasiswaController extends Controller
                     'nama' => $data[1],
                 ]);
 
-                Study::create([
+                $study = Study::create([
                     'mahasiswa_id' => $mahasiswa->id,
                     'mata_kuliah_id' => $mata_kuliah_id,
                     'semester_id' => $request->semester_id,
+                ]);
+
+                Nilai::create([
+                    'study_id' => $study->id,
                 ]);
 
                 $imported_count++;
@@ -123,10 +129,14 @@ class MahasiswaController extends Controller
 
         $mata_kuliah_id = MataKuliah::where('dosen_id', $dosen_id)->pluck('id');
 
-        Study::create([
+        $study = Study::create([
             'mahasiswa_id' => $new_mahasiswa->id,
             'mata_kuliah_id' => $mata_kuliah_id[0],
             'semester_id' => $request->semester_id,
+        ]);
+
+        Nilai::create([
+            'study_id' => $study->id,
         ]);
 
         return redirect()->route('mahasiswa.index', ['dosen_id' => $dosen_id])->with('success', 'Mahasiswa berhasil ditambahkan.');

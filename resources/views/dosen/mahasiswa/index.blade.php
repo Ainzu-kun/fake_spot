@@ -32,6 +32,7 @@
                 <td>
                     <a href="{{ route('mahasiswa.edit', ['study_id' => $study->id]) }}">Edit</a>
                     <a href="{{ route('mahasiswa.destroy', ['study_id' => $study->id]) }}">Hapus</a>
+                    <a href="{{ route('penilaian.edit', ['dosen_id' => $dosen->id, 'penilaian_id' => $study->nilai->id]) }}">Nilai mahasiswa</a>
                 </td>
             </tr>
         @endforeach
