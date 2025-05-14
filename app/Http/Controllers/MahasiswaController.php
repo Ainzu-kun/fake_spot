@@ -45,11 +45,12 @@ class MahasiswaController extends Controller
     public function import(Request $request, $dosen_id) {
         $request->validate([
             'semester_id' => 'required|exists:semesters,id',
-            'file' => 'required|max:5120',
+            'file' => 'required|mimes:csc,txt|max:5120',
         ], [
             'semester_id.required' => 'Semester harus dipilih.',
             'semester_id.exists' => 'Semester tidak valid.',
             'file.required' => 'File harus diunggah.',
+            'file.mimes' => 'File harus berupa CSV',
             'file.max' => 'Ukuran file tidak boleh lebih dari 5 MB.',
         ]);
 
