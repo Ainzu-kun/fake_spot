@@ -7,7 +7,6 @@
 
 # Jalankan seeder (opsional)
 # php artisan db:seed --force || echo "Seeder error, lanjut ke Apache..."
-php artisan db:seed MataKuliahSeeder --force
 
 # Start apache
 exec apache2-foreground
