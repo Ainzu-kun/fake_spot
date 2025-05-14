@@ -13,7 +13,7 @@ class MataKuliahSeeder extends Seeder
      */
     public function run(): void
     {
-        if(MataKuliah::where('id', 1)->exists()) {
+        if(!MataKuliah::where('id', 1)->exists()) {
             MataKuliah::create([
                 'kode_mk' => 'MK001',
                 'nama_mk' => 'Matematika Dasar',
