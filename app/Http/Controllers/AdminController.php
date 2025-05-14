@@ -12,10 +12,10 @@ class AdminController extends Controller
     public function welcome() {
         $dosens = Dosen::limit(5)->get() ?? collect();
 
-        $matkuls = Matakuliah::orderBy('nama_mk')->limit(5)->get() ?? collect();
+        $matkuls = Matakuliah::orderBy('nama_mk', 'asc')->limit(5)->get() ?? collect();
         dd('sampe sini');
         $semesters = Semester::orderBy('tahun_ajaran', 'desc')
-                            ->orderBy('semester')
+                            ->orderBy('semester', 'asc')
                             ->limit(5)
                             ->get() ?? collect();
 
