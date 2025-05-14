@@ -302,7 +302,7 @@
                                 <td>{{ $matkul->dosen->nama }}</td>
                             </tr>
                         @endforeach
-                        @empty($matkuls)
+                        @empty($matkul)
                             <tr>
                                 <td colspan="100%" class="text-center">No data subjects available</td>
                             </tr>
@@ -337,7 +337,7 @@
                                 <td>{{ $dosen->jenis_kelamin }}</td>
                             </tr>
                         @endforeach
-                        @empty($dosens)
+                        @empty($dosen)
                             <tr>
                                 <td colspan="100%" class="text-center">No data lecturers available</td>
                             </tr>
@@ -368,7 +368,7 @@
                                 <td>{{ $semester->tahun_ajaran }}</td>
                             </tr>
                         @endforeach
-                        @empty($semesters)
+                        @empty($semester)
                             <tr>
                                 <td colspan="100%" class="text-center">No data semesters available</td>
                             </tr>
