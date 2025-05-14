@@ -78,6 +78,8 @@ class MahasiswaController extends Controller
                     'nim' => $data[0],
                 ]);
             } catch (\Exception $e) {
+                dd('jalan');
+                dd($e->getMessage());
                 Log::error('Gagal membuat mahasiswa: ' . $e->getMessage());
                 // continue;
             }
