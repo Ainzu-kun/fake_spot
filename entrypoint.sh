@@ -6,7 +6,7 @@
 php artisan migrate --force
 
 # Jalankan seeder (opsional)
-php artisan db:seed --force || echo "Seeder error, lanjut ke Apache..."
+# php artisan db:seed --force || echo "Seeder error, lanjut ke Apache..."
 
 # Start apache
 exec apache2-foreground

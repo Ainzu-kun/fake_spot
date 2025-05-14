@@ -67,8 +67,6 @@ class MahasiswaController extends Controller
             $data = explode(';', $line);
             $data = array_map('trim', $data);
 
-            dd($data);
-
             if (empty($data[0]) || empty($data[1])) {
                 continue;
             }
@@ -77,6 +75,8 @@ class MahasiswaController extends Controller
                 'nama' => $data[1],
                 'nim' => $data[0],
             ]);
+
+            dd($new_mahasiswa);
 
             $mata_kuliah_id = MataKuliah::where('dosen_id', $dosen_id)->pluck('id');
 
