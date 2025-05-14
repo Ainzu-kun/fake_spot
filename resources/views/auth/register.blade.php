@@ -40,7 +40,7 @@
         <!-- Form -->
         <form action="{{ route('auth.store') }}" method="POST" class="z-10 w-full max-w-sm">
             @csrf
-            <div class="bg-black/10 backdrop-blur-md rounded-xl p-6 shadow-xl">
+            <div class="my-12 bg-black/10 backdrop-blur-md rounded-xl p-6 shadow-xl">
                 <h1 class="text-2xl font-extrabold mb-1 text-center text-white">
                     Welcome to <span class="designer-font">FAKESPOT</span>
                 </h1>
