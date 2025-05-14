@@ -79,7 +79,7 @@ class MahasiswaController extends Controller
                 ]);
             } catch (\Exception $e) {
                 Log::error('Gagal membuat mahasiswa: ' . $e->getMessage());
-                continue;
+                // continue;
             }
 
             dd($new_mahasiswa);
