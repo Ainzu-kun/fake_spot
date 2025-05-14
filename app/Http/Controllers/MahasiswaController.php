@@ -186,7 +186,9 @@ class MahasiswaController extends Controller
     public function destroy($study_id) {
         $study = Study::where('id', $study_id)->first();
         $mahasiswa = Mahasiswa::where('id', $study->mahasiswa_id)->first();
+        $penilaian = Nilai::where('study_id', $study_id)->first();
 
+        $penilaian->delete();
         $study->delete();
         $mahasiswa->delete();
 
