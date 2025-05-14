@@ -19,7 +19,7 @@
         <br><br>
         <a href="{{ route('auth.logout') }}">Logout</a>
     @else
-        Please login first
+        Please login first test
         <br>
         <a href="{{ route('auth.login') }}">Login</a>
     @endif
