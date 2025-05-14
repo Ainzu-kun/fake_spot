@@ -31,6 +31,8 @@
         </select>
         <br><br>
         <button type="submit">Update Mata Kuliah</button>
+        <br>
+        <a href="{{ route('matkul.index') }}">Kembali</a>
     </form>
 </body>
 </html>

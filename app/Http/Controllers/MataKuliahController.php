@@ -17,7 +17,7 @@ class MataKuliahController extends Controller
         return view('admin.matkul.create', compact('dosens'));
     }
 
-    public function store(Request $request, $dosen_id) {
+    public function store(Request $request) {
         $request->validate([
             'kode_mk' => 'required|max:5',
             'nama_mk' => 'required|string|max:50',
