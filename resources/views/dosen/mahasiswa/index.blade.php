@@ -1,49 +1,173 @@
-<!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Fake Spot</title>
 
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1" name="viewport" />
+    <title>
+        Student Page
+    </title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&amp;display=swap" rel="stylesheet" />
     <link rel="shortcut icon" href="{{ asset('assets/icon/upi.png') }}" type="image/x-icon">
+    <style>
+
+        .font-orbitron {
+            font-family: 'Orbitron', sans-serif;
+        }
+
+        .text-glow-red {
+            text-shadow:
+                0 0 5px #ff0000,
+                0 0 10px #ff0000,
+                0 0 20px #ff0000,
+                0 0 40px #ff0000;
+        }
+
+        .welcome-character {
+            position: relative;
+            z-index: 1;
+            width: 200px;
+            height: auto;
+            margin-left: 20px;
+        }
+
+        /* Table styles */
+        .custom-table {
+            margin-top: 10px;
+            width: 100%;
+            border-collapse: collapse;
+            border: 1px solid #000000;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .custom-table th {
+            background-color: #000000;
+            color: white;
+            text-align: center;
+            padding: 8px;
+        }
+
+        .custom-table td {
+            padding: 8px;
+            text-align: center;
+            background-color: white;
+        }
+
+        .custom-table tr:nth-child(odd) td {
+            background-color: #f2f2f2;
+        }
+    </style>
 </head>
+
 <body>
-    <h2>Daftar Mahasiswa</h2>
-    @if(session('success'))
-        <div style="color: green;">{{ session('success') }}</div>
-    @endif
-    <table>
-        <tr>
-            <th>No</th>
-            <th>NIM</th>
-            <th>Nama Mahasiswa</th>
-            <th>Semester</th>
-            <th>Tahun Ajaran</th>
-            <th>Action</th>
-        </tr>
-        @foreach ($studies as $study)
-            <tr>
-                <td>{{ $loop->iteration }}</td>
-                <td>{{ $study->mahasiswa->nim }}</td>
-                <td>{{ $study->mahasiswa->nama }}</td>
-                <td>{{ $study->semester->semester }}</td>
-                <td>{{ $study->semester->tahun_ajaran }}</td>
-                <td>
-                    <a href="{{ route('mahasiswa.edit', ['study_id' => $study->id]) }}">Edit</a>
-                    <a href="{{ route('mahasiswa.destroy', ['study_id' => $study->id]) }}">Hapus</a>
-                </td>
-            </tr>
-        @endforeach
-        @empty($study)
-            <tr>
-                <td colspan="100%" style="text-align: center;">Tidak ada data mahasiswa</td>
-            </tr>
-        @endempty
-    </table>
-    <br>
-    <a href="{{ route('mahasiswa.create', ['dosen_id' => $dosen->id]) }}">Tambah Mahasiswa</a>
-    <br><br>
-    <a href="{{ route('dosen.dashboard', ['dosen_id' => $dosen->id]) }}">Kembali</a>
+    <div>
+        <header class="bg-black flex justify-between items-center px-6 py-4 mb-6">
+            <div class="flex items-center space-x-1">
+                <span class="font-orbitron text-red-600 text-xl font-extrabold italic select-none">
+                    FAKE
+                </span>
+                <span
+                    class="font-orbitron text-red-600 text-xl font-extrabold italic border border-red-600 rounded-md px-2 py-[2px] select-none">
+                    SPOT
+                </span>
+            </div>
+            <div class="flex items-center space-x-8">
+                <nav class="flex items-center space-x-8 text-gray-400 text-sm font-normal">
+                    <a class="hover:text-white" href="{{ route('dosen.dashboard', ['dosen_id' => $dosen->id]) }}">
+                        Dashboard
+                    </a>
+                    <a class="font-semibold text-white" href="#">
+                        Students
+                    </a>
+                    <a class="hover:text-white" href="#">
+                        Evaluation
+                    </a>
+                </nav>
+                <a href="{{ route('auth.logout') }}">
+                    <button
+                        class="bg-red-900 hover:bg-red-800 text-white text-sm font-semibold rounded-md px-4 py-2"
+                        type="button">
+                        <i class="fas fa-power-off me-0">
+                        </i>
+                        <span>
+                            Logout
+                        </span>
+                    </button>
+                </a>
+            </div>
+        </header>
+        <main class="bg-white mt-6 rounded-md p-6">
+            <button
+                class="flex items-center space-x-2 border border-gray-700 rounded-md px-4 py-2 text-sm text-black mb-6"
+                type="button">
+                <a href="{{ route('dosen.dashboard', ['dosen_id' => $dosen->id]) }}" class="flex items-center space-x-2">
+                    <i class="fas fa-arrow-left">
+                    </i>
+                    <span>
+                        Back
+                    </span>
+                </a>
+            </button>
+            </button>
+            <section class="mb-6">
+                <div class="flex justify-between items-center bg-black rounded-xl p-6">
+                    <span
+                        class="font-orbitron text-white text-4xl lg:flex lg:text-8xl font-extrabold italic text-glow-red select-none"
+                        style="line-height: 1">
+                        STUDENT
+                    </span>
+                    <div class="welcome-character">
+                        <img src="{{ asset('assets/img/Patrik.png') }}" alt="Patrick UPI">
+                    </div>
+                </div>
+            </section>
+            <button
+                class="flex items-center space-x-2 bg-black text-white text-sm font-semibold rounded-md px-4 py-2 mb-4"
+                type="button">
+                <i class="fas fa-plus">
+                </i>
+                <span>
+                    Add Students
+                </span>
+            </button>
+            <div class="table-responsive">
+                <table class="table table-bordered custom-table">
+                    <thead>
+                        <tr>
+                            <th width="5%">No</th>
+                            <th width="25%">NIM</th>
+                            <th width="30%">Student Name</th>
+                            <th width="10%">Semester</th>
+                            <th width="10%">Academic Year</th>
+                            <th width="20%">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>2403342</td>
+                            <td>Zaky Rizzan Zain</td>
+                            <td>2</td>
+                            <td>2024</td>
+                            <td class=" space-x-5">
+                                <a href="#" class="text-black hover:text-gray-700">
+                                    <i class="fas fa-edit">
+                                    </i>
+                                </a>
+                                <a href="#" class="text-red-600 hover:text-red-700">
+                                    <i class="fas fa-trash-alt">
+                                    </i>
+                                </a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </main>
+    </div>
 </body>
+
 </html>

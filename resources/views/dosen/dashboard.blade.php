@@ -124,7 +124,7 @@
             justify-content: space-between;
             padding: 20px 30px;
             color: white;
-            margin-top: 40;
+            margin-top: 40px;
         }
 
 
@@ -295,9 +295,9 @@
                         <tr>
                             <th width="5%">No</th>
                             <th width="25%">NIM</th>
-                            <th width="50%">Student Name</th>
+                            <th width="40%">Student Name</th>
                             <th width="10%">Semester</th>
-                            <th width="10%">Academic Year</th>
+                            <th width="20%">Academic Year</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -324,12 +324,19 @@
                         <tr>
                             <th width="5%">No</th>
                             <th width="15%">NIM</th>
-                            <th width="20%">Student Name</th>
-                            <th width="20%">Assignment Value</th>
-                            <th width="10%">Quiz Value</th>
-                            <th width="10%">UTS</th>
-                            <th width="10%">UAS</th>
-                            <th width="10%">IP</th>
+                            <th width="20%%">Student Name</th>
+                            <th width="5%">Point</th>
+                            <th width="5%">Tugas</th>
+                            <th width="5%">Pre UTS</th>
+                            <th width="5%">Kuis 1</th>
+                            <th width="5%">UTS</th>
+                            <th width="5%">Pre UAS</th>
+                            <th width="5%">Kuis 2</th>
+                            <th width="5%">UAS</th>
+                            <th width="5%">Total</th>
+                            <th width="5%">Average</th>
+                            <th width="5%">IPK</th>
+                            <th width="5%">Grade</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -341,7 +348,14 @@
                             <td>100</td>
                             <td>100</td>
                             <td>100</td>
+                            <td>100</td>
+                            <td>100</td>
+                            <td>100</td>
+                            <td>100</td>
+                            <td>100</td>
+                            <td>100</td>
                             <td>4.00</td>
+                            <td>A</td>
                         </tr>
                     </tbody>
                 </table>
