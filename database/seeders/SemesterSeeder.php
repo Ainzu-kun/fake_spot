@@ -14,19 +14,19 @@ class SemesterSeeder extends Seeder
     public function run(): void
     {
         if(!Semester::where('id', 1)->exists()) {
-            Semester::insert([
-                [
-                    'semester' => 1,
-                    'tahun_ajaran' => '2025',
-                ],
-                [
-                    'semester' => 2,
-                    'tahun_ajaran' => '2025',
-                ],
-                [
-                    'semester' => 3,
-                    'tahun_ajaran' => '2024',
-                ]
+            Semester::create([
+                'semester' => 1,
+                'tahun_ajaran' => '2025',
+            ]);
+
+            Semester::create([
+                'semester' => 2,
+                'tahun_ajaran' => '2025',
+            ]);
+
+            Semester::create([
+                'semester' => 3,
+                'tahun_ajaran' => '2024',
             ]);
         }
     }

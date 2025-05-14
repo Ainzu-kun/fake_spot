@@ -55,6 +55,8 @@ class MahasiswaController extends Controller
         $file = $request->file('file');
         $file_content = file($file->getPathname());
 
+        dd($file_content);
+
         $skip_first_line = true;
 
         foreach($file_content as $line) {
@@ -67,12 +69,20 @@ class MahasiswaController extends Controller
             $data = explode(';', $line);
             $data = array_map('trim', $data);
 
+            if (empty($data[0]) || empty($data[1])) {
+                continue;
+            }
+
             $new_mahasiswa = Mahasiswa::create([
                 'nama' => $data[1],
                 'nim' => $data[0],
             ]);
 
             $mata_kuliah_id = MataKuliah::where('dosen_id', $dosen_id)->pluck('id');
+
+            if (!$mata_kuliah_id) {
+                return redirect()->back()->withErrors(['error' => 'Mata kuliah tidak ditemukan untuk dosen ini.']);
+            }
 
             Study::create([
                 'mahasiswa_id' => $new_mahasiswa->id,
