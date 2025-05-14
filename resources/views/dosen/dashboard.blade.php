@@ -13,6 +13,8 @@
         <h2>Selamat datang {{ $dosen->nama }}!</h2>
         <br>
         <a href="{{ route('mahasiswa.index', ['dosen_id' => $dosen->id]) }}">Daftar Mahasiswa</a>
+        <br>
+        <a href="{{ route('penilaian.index') }}">Penilaian</a>
         <br><br>
         <a href="{{ route('auth.logout') }}">Logout</a>
     @else

@@ -6,6 +6,7 @@ use App\Http\Controllers\DosenController;
 use App\Http\Controllers\MataKuliahController;
 use App\Http\Controllers\SemesterController;
 use App\Http\Controllers\MahasiswaController;
+use App\Http\Controllers\PenilaianController;
 
 /*
 |--------------------------------------------------------------------------
@@ -72,4 +73,10 @@ Route::controller(MahasiswaController::class)->middleware('auth')->group(functio
     Route::get('/mahasiswa/edit/{study_id}', 'edit')->name('mahasiswa.edit');
     Route::post('/mahasiswa/update/{study_id}', 'update')->name('mahasiswa.update');
     Route::get('/mahasiswa/destroy/{study_id}', 'destroy')->name('mahasiswa.destroy');
+});
+
+// Penilaian Routes
+Route::controller(PenilaianController::class)->middleware('auth')->group(function() {
+    Route::get('/penilaian', 'penilaian')->name('penilaian.index');
+    Route::get('/penilaian/create', 'create')->name('penilaian.create');
 });
