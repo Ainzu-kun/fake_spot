@@ -159,7 +159,6 @@
                                     <i class="fas fa-edit">
                                     </i>
                                 </a>
-                                {{ dd($study->nilai) }}
                                 <a href="{{ route('penilaian.edit', ['dosen_id' => $dosen->id, 'penilaian_id' => $study->nilai->id]) }}"
                                     class="text-blue-600 hover:text-blue-700">
                                     <i class="fas fa-user"></i>
