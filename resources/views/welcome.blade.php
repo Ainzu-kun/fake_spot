@@ -23,28 +23,28 @@
             background-color: #000000;
             padding: 15px 20px;
         }
-        
+
         .navbar-brand {
             font-weight: bold;
             padding: 0;
         }
-        
+
         .logo-fakespot {
             height: 40px;
             max-width: 100%;
         }
-        
+
         .navbar-nav .nav-link {
             color: #9e9e9e;
             margin-left: 15px;
             font-size: 14px;
         }
-        
-        .navbar-nav .nav-link:hover, 
+
+        .navbar-nav .nav-link:hover,
         .navbar-nav .nav-link.active {
             color: #ffffff;
         }
-        
+
         .btn-logout {
             background-color: #800000;
             color: white;
@@ -58,7 +58,7 @@
             line-height: 1;
             height: 40px;
         }
-        
+
         .btn-logout:hover {
             background-color: #a00000;
             color: white;
@@ -75,7 +75,7 @@
             text-align: center;
             padding: 40px;
             border-radius: 10px;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
             background-color: white;
         }
 
@@ -170,13 +170,13 @@
             font-weight: bold;
             margin: 25px 0 15px 0;
         }
-        
+
         .section-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
-        
+
         .btn-see-all {
             background-color: #f8f9fa;
             border: 1px solid #ced4da;
@@ -184,29 +184,29 @@
             padding: 3px 10px;
             font-size: 12px;
         }
-        
+
         /* Table styles */
         .custom-table {
             margin-top: 10px;
         }
-        
+
         .custom-table th {
             background-color: #000000;
             color: white;
             text-align: center;
             padding: 8px;
         }
-        
+
         .custom-table td {
             padding: 8px;
             text-align: center;
             background-color: white;
         }
-        
+
         .custom-table tr:nth-child(odd) td {
             background-color: #f2f2f2;
         }
-        
+
         /* Footer styles */
         .footer {
             text-align: center;
@@ -224,12 +224,12 @@
             <a class="navbar-brand" href="#">
                 <img src="{{ asset('assets/img/Logo FS.png') }}" alt="FAKESPOT" class="logo-fakespot">
             </a>
-            
+
             <!-- Toggler untuk tampilan mobile -->
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            
+
             <!-- Menu navigasi -->
             <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
                 <ul class="navbar-nav align-items-center">
@@ -268,7 +268,7 @@
                 </div>
 
                 <div class="welcome-text">
-                    <div class="welcome-title">WELCOME {{ Auth::user()->username }}</div>
+                    <div class="welcome-title">WELCOME {{ Auth::user()->username }}!</div>
                     <div class="welcome-subtitle">Have a nice day!</div>
                 </div>
 
@@ -293,13 +293,15 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td>MK001</td>
-                            <td>Pemrograman Web</td>
-                            <td>3</td>
-                            <td>Dr. Budi Santoso</td>
-                        </tr>
+                        @foreach ($matkuls as $matkul)
+                            <tr>
+                                <td>{{ $loop->iteration }}</td>
+                                <td>{{ $matkul->kode_mk }}</td>
+                                <td>{{ $matkul->nama_mk }}</td>
+                                <td>{{ $matkul->sks }}</td>
+                                <td>{{ $matkul->dosen->nama }}</td>
+                            </tr>
+                        @endforeach
                     </tbody>
                 </table>
             </div>
@@ -321,13 +323,15 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td>Dr. Budi Santoso</td>
-                            <td>Pak. Budi </td>
-                            <td>budi@upi.edu</td>
-                            <td>Laki-laki</td>
-                        </tr>
+                        @foreach ($dosens as $dosen)
+                            <tr>
+                                <td>{{ $loop->iteration }}</td>
+                                <td>{{ $dosen->nama }}</td>
+                                <td>{{ $dosen->user->username }}</td>
+                                <td>{{ $dosen->user->email }}</td>
+                                <td>{{ $dosen->jenis_kelamin }}</td>
+                            </tr>
+                        @endforeach
                     </tbody>
                 </table>
             </div>
@@ -335,7 +339,7 @@
             <!-- Semester Section -->
             <div class="section-header">
                 <div class="section-title">Semester</div>
-                <a href="semester.index" class="btn btn-see-all">See all <i class="fas fa-angle-right"></i></a>
+                <a href="{{ route('semester.index') }}" class="btn btn-see-all">See all <i class="fas fa-angle-right"></i></a>
             </div>
             <div class="table-responsive">
                 <table class="table table-bordered custom-table">
@@ -347,26 +351,13 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td>2</td>
-                            <td>2024</td>
-                        </tr>
-                        <tr>
-                            <td>2</td>
-                            <td>4</td>
-                            <td>2023</td>
-                        </tr>
-                        <tr>
-                            <td>3</td>
-                            <td>6</td>
-                            <td>2022</td>
-                        </tr>
-                        <tr>
-                            <td>4</td>
-                            <td>8</td>
-                            <td>2021</td>
-                        </tr>
+                        @foreach ($semesters as $semester)
+                            <tr>
+                                <td>{{ $loop->iteration }}</td>
+                                <td>{{ $semester->semester }}</td>
+                                <td>{{ $semester->tahun_ajaran }}</td>
+                            </tr>
+                        @endforeach
                     </tbody>
                 </table>
             </div>
@@ -377,7 +368,7 @@
             </div>
         </div>
     @else
-        <div class="login-container">
+        <div class="login-container my-auto">
           <div class="login-box">
             <h1>Welcome to <span class="brand">FAKESPOT</span></h1>
             <p>Please Login First</p>
@@ -385,5 +376,7 @@
           </div>
         </div>
     @endif
+
+    <script src="{{ asset('bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 </body>
 </html>

@@ -7,6 +7,7 @@ use App\Http\Controllers\MataKuliahController;
 use App\Http\Controllers\SemesterController;
 use App\Http\Controllers\MahasiswaController;
 use App\Http\Controllers\PenilaianController;
+use App\Http\Controllers\AdminController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,9 +20,7 @@ use App\Http\Controllers\PenilaianController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-})->name('admin.dashboard');
+Route::get('/', [AdminController::class, 'welcome'])->name('admin.dashboard');
 
 Route::controller(AuthController::class)->group(function() {
     // Login Routes
