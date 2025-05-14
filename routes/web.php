@@ -77,6 +77,7 @@ Route::controller(MahasiswaController::class)->middleware('auth')->group(functio
 
 // Penilaian Routes
 Route::controller(PenilaianController::class)->middleware('auth')->group(function() {
-    Route::get('/penilaian', 'penilaian')->name('penilaian.index');
-    Route::get('/penilaian/create', 'create')->name('penilaian.create');
+    Route::get('/penilaian/{dosen_id}', 'index')->name('penilaian.index');
+    Route::get('/penilaian/edit/{dosen_id}/{penilaian_id}', 'edit')->name('penilaian.edit');
+    Route::post('/penilaian/update/{dosen_id}/{penilaian_id}', 'update')->name('penilaian.update');
 });

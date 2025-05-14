@@ -29,6 +29,6 @@ class Study extends Model
     }
 
     public function nilai() {
-        return $this->belongsTo(Nilai::class);
+        return $this->hasOne(Nilai::class, 'study_id');
     }
 }

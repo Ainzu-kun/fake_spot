@@ -11,7 +11,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&amp;display=swap" rel="stylesheet" />
     <link rel="shortcut icon" href="{{ asset('assets/icon/upi.png') }}" type="image/x-icon">
     <style>
-
         .font-orbitron {
             font-family: 'Orbitron', sans-serif;
         }
@@ -87,8 +86,7 @@
                     </a>
                 </nav>
                 <a href="{{ route('auth.logout') }}">
-                    <button
-                        class="bg-red-900 hover:bg-red-800 text-white text-sm font-semibold rounded-md px-4 py-2"
+                    <button class="bg-red-900 hover:bg-red-800 text-white text-sm font-semibold rounded-md px-4 py-2"
                         type="button">
                         <i class="fas fa-power-off me-0">
                         </i>
@@ -103,14 +101,14 @@
             <button
                 class="flex items-center space-x-2 border border-gray-700 rounded-md px-4 py-2 text-sm text-black mb-6"
                 type="button">
-                <a href="{{ route('dosen.dashboard', ['dosen_id' => $dosen->id]) }}" class="flex items-center space-x-2">
+                <a href="{{ route('dosen.dashboard', ['dosen_id' => $dosen->id]) }}"
+                    class="flex items-center space-x-2">
                     <i class="fas fa-arrow-left">
                     </i>
                     <span>
                         Back
                     </span>
                 </a>
-            </button>
             </button>
             <section class="mb-6">
                 <div class="flex justify-between items-center bg-black rounded-xl p-6">
@@ -127,43 +125,60 @@
             <button
                 class="flex items-center space-x-2 bg-black text-white text-sm font-semibold rounded-md px-4 py-2 mb-4"
                 type="button">
-                <i class="fas fa-plus">
-                </i>
-                <span>
-                    Add Students
-                </span>
+                <a href="{{ route('mahasiswa.create', ['dosen_id' => $dosen->id]) }}"
+                    class="flex items-center space-x-2">
+                    <i class="fas fa-plus">
+                    </i>
+                    <span>
+                        Add Students
+                    </span>
+                </a>
             </button>
             <div class="table-responsive">
                 <table class="table table-bordered custom-table">
-                    <thead>
+
+                    <tr>
+                        <th width="5%">No</th>
+                        <th width="25%">NIM</th>
+                        <th width="30%">Student Name</th>
+                        <th width="10%">Semester</th>
+                        <th width="10%">Academic Year</th>
+                        <th width="20%">Action</th>
+                    </tr>
+
+                    @foreach ($studies as $study)
                         <tr>
-                            <th width="5%">No</th>
-                            <th width="25%">NIM</th>
-                            <th width="30%">Student Name</th>
-                            <th width="10%">Semester</th>
-                            <th width="10%">Academic Year</th>
-                            <th width="20%">Action</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td>2403342</td>
-                            <td>Zaky Rizzan Zain</td>
-                            <td>2</td>
-                            <td>2024</td>
+                            <td>{{ $loop->iteration }}</td>
+                            <td>{{ $study->mahasiswa->nim }}</td>
+                            <td>{{ $study->mahasiswa->nama }}</td>
+                            <td>{{ $study->semester->semester }}</td>
+                            <td>{{ $study->semester->tahun_ajaran }}</td>
                             <td class=" space-x-5">
-                                <a href="#" class="text-black hover:text-gray-700">
+                                <a href="{{ route('mahasiswa.edit', ['study_id' => $study->id]) }}"
+                                    class="text-black hover:text-gray-700">
                                     <i class="fas fa-edit">
                                     </i>
                                 </a>
-                                <a href="#" class="text-red-600 hover:text-red-700">
+                                {{ dd($study->nilai) }}
+                                <a href="{{ route('penilaian.edit', ['dosen_id' => $dosen->id, 'penilaian_id' => $study->nilai->id]) }}"
+                                    class="text-blue-600 hover:text-blue-700">
+                                    <i class="fas fa-user"></i>
+                                </a>
+
+                                <a href="{{ route('mahasiswa.destroy', ['study_id' => $study->id]) }}"
+                                    class="text-red-600 hover:text-red-700">
                                     <i class="fas fa-trash-alt">
                                     </i>
                                 </a>
                             </td>
                         </tr>
-                    </tbody>
+                    @endforeach
+                    @empty($studies)
+                        <tr>
+                            <td colspan="100%" style="text-align: center"> No student data available </td>
+                        </tr>
+                    @endempty
+
                 </table>
             </div>
         </main>
