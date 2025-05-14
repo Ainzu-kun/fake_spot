@@ -54,49 +54,44 @@ class MahasiswaController extends Controller
         ]);
 
         $file = $request->file('file');
-        $file_content = file($file->getPathname());
+        $lines = file($file->getPathname(), FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
 
-        $skip_first_line = true;
+        if (!$lines || count($lines) < 2) {
+            return redirect()->back()->withErrors(['file' => 'File CSV kosong atau tidak valid.']);
+        }
 
-        foreach($file_content as $line) {
+        $mata_kuliah_id = MataKuliah::where('dosen_id', $dosen_id)->pluck('id')->first();
+        if (!$mata_kuliah_id) {
+            return redirect()->back()->withErrors(['error' => 'Mata kuliah tidak ditemukan untuk dosen ini.']);
+        }
 
-            if($skip_first_line) {
-                $skip_first_line = false;
-                continue;
-            }
+        // Lewati baris header
+        $imported_count = 0;
+        foreach (array_slice($lines, 1) as $line_num => $line) {
+            $data = array_map('trim', explode(';', $line));
 
-            $data = explode(';', $line);
-            $data = array_map('trim', $data);
-
-            if (empty($data[0]) || empty($data[1])) {
+            if (count($data) < 2 || empty($data[0]) || empty($data[1])) {
+                Log::warning("Baris $line_num diabaikan karena format tidak valid: $line");
                 continue;
             }
 
             try {
-                $new_mahasiswa = Mahasiswa::create([
-                    'nama' => $data[1],
+                $mahasiswa = Mahasiswa::create([
                     'nim' => $data[0],
+                    'nama' => $data[1],
                 ]);
+
+                Study::create([
+                    'mahasiswa_id' => $mahasiswa->id,
+                    'mata_kuliah_id' => $mata_kuliah_id,
+                    'semester_id' => $request->semester_id,
+                ]);
+
+                $imported_count++;
             } catch (\Exception $e) {
-                dd('jalan');
-                dd($e->getMessage());
-                Log::error('Gagal membuat mahasiswa: ' . $e->getMessage());
-                // continue;
+                Log::error("Gagal impor baris $line_num: " . $e->getMessage());
+                continue; // Lanjutkan ke baris berikutnya meski error
             }
-
-            dd($new_mahasiswa);
-
-            $mata_kuliah_id = MataKuliah::where('dosen_id', $dosen_id)->pluck('id');
-
-            if (!$mata_kuliah_id) {
-                return redirect()->back()->withErrors(['error' => 'Mata kuliah tidak ditemukan untuk dosen ini.']);
-            }
-
-            Study::create([
-                'mahasiswa_id' => $new_mahasiswa->id,
-                'mata_kuliah_id' => $mata_kuliah_id[0],
-                'semester_id' => $request->semester_id,
-            ]);
         }
 
         return redirect()->route('mahasiswa.index', ['dosen_id' => $dosen_id])->with('success', 'Mahasiswa berhasil ditambahkan.');
