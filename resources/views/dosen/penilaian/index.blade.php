@@ -26,7 +26,7 @@
             <th>Pre UAS</th>
             <th>Kuis 2</th>
             <th>UAS</th>
-            <td>Rata-rata</td>
+            <th>Rata-rata</th>
             <th>IPK</th>
             <th>Grade</th>
             <th>Action</th>
