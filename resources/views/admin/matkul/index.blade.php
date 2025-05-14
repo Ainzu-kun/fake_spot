@@ -12,16 +12,16 @@
     @if(session('success'))
         <p style="color: green">{{ session('success') }}</p>
     @endif
-    @foreach ($matkuls as $matkul)
-        <table>
-            <tr>
-                <th>No</th>
-                <th>Kode Mata kuliah</th>
-                <th>Nama Mata kuliah</th>
-                <th>SKS</th>
-                <th>Dosen</th>
-                <th>Action</th>
-            </tr>
+    <table>
+        <tr>
+            <th>No</th>
+            <th>Kode Mata kuliah</th>
+            <th>Nama Mata kuliah</th>
+            <th>SKS</th>
+            <th>Dosen</th>
+            <th>Action</th>
+        </tr>
+        @foreach ($matkuls as $matkul)
             <tr>
                 <td>{{ $loop->iteration }}</td>
                 <td>{{ $matkul->kode_mk }}</td>
@@ -33,11 +33,11 @@
                     <a href="{{ route('matkul.destroy', ['matkul_id' => $matkul->id]) }}">Hapus</a>
                 </td>
             </tr>
-        </table>
-        <br>
-        <a href="{{ route('matkul.create') }}">Buat matkul</a>
-        <br>
-        <a href="{{ route('admin.dashboard') }}">Kembali</a>
-    @endforeach
+        @endforeach
+    </table>
+    <br>
+    <a href="{{ route('matkul.create') }}">Buat matkul</a>
+    <br>
+    <a href="{{ route('admin.dashboard') }}">Kembali</a>
 </body>
 </html>

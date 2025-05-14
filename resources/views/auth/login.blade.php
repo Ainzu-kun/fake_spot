@@ -78,9 +78,14 @@
             </button>
 
             <!-- Register -->
-            <p class="mt-6 text-xs text-center text-white">
+            <p class="mt-6 text-sm text-center text-white">
                 Don’t have an account?
                 <a href="{{ route('auth.register') }}" class="text-blue-400 hover:underline">Register</a>
+            </p>
+
+            <!-- Back to Home -->
+            <p class="mt-4 text-sm text-center text-white">
+                <a href="/" class="text-blue-400 hover:underline">Back to Home</a>
             </p>
         </form>
     </div>
