@@ -19,7 +19,9 @@ class UserSeeder extends Seeder
                 'email' => 'admin@upi.edu',
                 'password' => bcrypt('admin123'),
                 'role' => 'admin'
-            ], [
+            ]);
+
+            User::create([
                 'username' => 'dosen',
                 'email' => 'dosen@upi.edu',
                 'password' => bcrypt('dosen'),

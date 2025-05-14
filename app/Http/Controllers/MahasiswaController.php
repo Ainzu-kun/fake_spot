@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 use App\Models\Dosen;
 use App\Models\Mahasiswa;
 use App\Models\MataKuliah;
@@ -71,10 +72,15 @@ class MahasiswaController extends Controller
                 continue;
             }
 
-            $new_mahasiswa = Mahasiswa::create([
-                'nama' => $data[1],
-                'nim' => $data[0],
-            ]);
+            try {
+                $new_mahasiswa = Mahasiswa::create([
+                    'nama' => $data[1],
+                    'nim' => $data[0],
+                ]);
+            } catch (\Exception $e) {
+                Log::error('Gagal membuat mahasiswa: ' . $e->getMessage());
+                continue;
+            }
 
             dd($new_mahasiswa);
 
