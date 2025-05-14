@@ -55,8 +55,6 @@ class MahasiswaController extends Controller
         $file = $request->file('file');
         $file_content = file($file->getPathname());
 
-        dd($file_content);
-
         $skip_first_line = true;
 
         foreach($file_content as $line) {
@@ -68,6 +66,8 @@ class MahasiswaController extends Controller
 
             $data = explode(';', $line);
             $data = array_map('trim', $data);
+
+            dd($data);
 
             if (empty($data[0]) || empty($data[1])) {
                 continue;
