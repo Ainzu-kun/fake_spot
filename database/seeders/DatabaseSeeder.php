@@ -16,6 +16,7 @@ class DatabaseSeeder extends Seeder
             UserSeeder::class,
             DosenSeeder::class,
             SemesterSeeder::class,
+            MatakuliahSeeder::class,
         ]);
         // \App\Models\User::factory(10)->create();
 
