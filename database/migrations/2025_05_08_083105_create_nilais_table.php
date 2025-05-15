@@ -23,7 +23,7 @@ return new class extends Migration
             $table->char('kuis_2', 3)->default(0);
             $table->char('uas', 3)->default(0);
             $table->float('IPK', 3)->default(0);
-            $table->char('grade', 2)->default('D');
+            $table->char('grade', 2)->default('E');
             $table->timestamps();
         });
     }
