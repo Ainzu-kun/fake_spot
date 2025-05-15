@@ -15,10 +15,6 @@ class Mahasiswa extends Model
         'nim',
     ];
 
-    // public function user() {
-    //     return $this->belongsTo(User::class, 'user_id');
-    // }
-
     public function studies() {
         return $this->belongsTo(Study::class);
     }

@@ -25,28 +25,28 @@
             background-color: #000000;
             padding: 15px 20px;
         }
-        
+
         .navbar-brand {
             font-weight: bold;
             padding: 0;
         }
-        
+
         .logo-fakespot {
             height: 40px;
             max-width: 100%;
         }
-        
+
         .navbar-nav .nav-link {
             color: #9e9e9e;
             margin-left: 15px;
             font-size: 14px;
         }
-        
-        .navbar-nav .nav-link:hover, 
+
+        .navbar-nav .nav-link:hover,
         .navbar-nav .nav-link.active {
             color: #ffffff;
         }
-        
+
         .btn-logout {
             background-color: #800000;
             color: white;
@@ -60,7 +60,7 @@
             line-height: 1;
             height: 40px;
         }
-        
+
         .btn-logout:hover {
             background-color: #a00000;
             color: white;
@@ -172,13 +172,13 @@
             font-weight: bold;
             margin: 25px 0 15px 0;
         }
-        
+
         .section-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
-        
+
         .btn-see-all {
             background-color: #f8f9fa;
             border: 1px solid #ced4da;
@@ -186,29 +186,29 @@
             padding: 3px 10px;
             font-size: 12px;
         }
-        
+
         /* Table styles */
         .custom-table {
             margin-top: 10px;
         }
-        
+
         .custom-table th {
             background-color: #000000;
             color: white;
             text-align: center;
             padding: 8px;
         }
-        
+
         .custom-table td {
             padding: 8px;
             text-align: center;
             background-color: white;
         }
-        
+
         .custom-table tr:nth-child(odd) td {
             background-color: #f2f2f2;
         }
-        
+
         /* Footer styles */
         .footer {
             text-align: center;
@@ -220,18 +220,18 @@
     </style>
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-custom fixed-top" >
+    <nav class="navbar navbar-expand-lg navbar-custom navbar-dark fixed-top" >
         <div class="container-fluid">
             <!-- Logo -->
             <a class="navbar-brand" href="#">
-                <img src="{{ asset('assets/img/Logo FS.png') }}" alt="FAKESPOT" class="logo-fakespot">
+                <img src="{{ asset('assets/img/Logo_FS.png') }}" alt="FAKESPOT" class="logo-fakespot">
             </a>
-            
+
             <!-- Toggler untuk tampilan mobile -->
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            
+
             <!-- Menu navigasi -->
             <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
                 <ul class="navbar-nav align-items-center">
@@ -250,7 +250,7 @@
                         </li>
                         <li class="nav-item ms-3">
                             <a class="btn btn-logout" href="{{ route('auth.logout') }}">
-                                <i class="fas fa-power-off me-0"></i> Logout
+                                <i class="fas fa-power-off me-1"></i><span>Logout</span>
                             </a>
                         </li>
                     @else
@@ -266,11 +266,11 @@
             <!-- Welcome Banner -->
             <div class="welcome-banner">
                 <div class="welcome-background">
-                    <img src="{{ asset('assets/img/Logo FS.png') }}" alt="Logo Background">
+                    <img src="{{ asset('assets/img/Logo_FS.png') }}" alt="Logo Background">
                 </div>
 
                 <div class="welcome-text">
-                    <div class="welcome-title">WELCOME {{ Auth::user()->username }}</div>
+                    <div class="welcome-title">WELCOME {{ Auth::user()->username }}!</div>
                     <div class="welcome-subtitle">Have a nice day!</div>
                 </div>
 
@@ -295,13 +295,20 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td>MK001</td>
-                            <td>Pemrograman Web</td>
-                            <td>3</td>
-                            <td>Dr. Budi Santoso</td>
-                        </tr>
+                        @foreach ($matkuls as $matkul)
+                            <tr>
+                                <td>{{ $loop->iteration }}</td>
+                                <td>{{ $matkul->kode_mk }}</td>
+                                <td>{{ $matkul->nama_mk }}</td>
+                                <td>{{ $matkul->sks }}</td>
+                                <td>{{ $matkul->dosen->nama }}</td>
+                            </tr>
+                        @endforeach
+                        @empty($matkul)
+                            <tr>
+                                <td colspan="100%" class="text-center">No data subjects available</td>
+                            </tr>
+                        @endempty
                     </tbody>
                 </table>
             </div>
@@ -323,13 +330,20 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td>Dr. Budi Santoso</td>
-                            <td>Pak. Budi </td>
-                            <td>budi@upi.edu</td>
-                            <td>Laki-laki</td>
-                        </tr>
+                        @foreach ($dosens as $dosen)
+                            <tr>
+                                <td>{{ $loop->iteration }}</td>
+                                <td>{{ $dosen->nama }}</td>
+                                <td>{{ $dosen->user->username }}</td>
+                                <td>{{ $dosen->user->email }}</td>
+                                <td>{{ $dosen->jenis_kelamin }}</td>
+                            </tr>
+                        @endforeach
+                        @empty($dosen)
+                            <tr>
+                                <td colspan="100%" class="text-center">No data lecturers available</td>
+                            </tr>
+                        @endempty
                     </tbody>
                 </table>
             </div>
@@ -349,37 +363,29 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td>2</td>
-                            <td>2024</td>
-                        </tr>
-                        <tr>
-                            <td>2</td>
-                            <td>4</td>
-                            <td>2023</td>
-                        </tr>
-                        <tr>
-                            <td>3</td>
-                            <td>6</td>
-                            <td>2022</td>
-                        </tr>
-                        <tr>
-                            <td>4</td>
-                            <td>8</td>
-                            <td>2021</td>
-                        </tr>
+                        @foreach ($semesters as $semester)
+                            <tr>
+                                <td>{{ $loop->iteration }}</td>
+                                <td>{{ $semester->semester }}</td>
+                                <td>{{ $semester->tahun_ajaran }}</td>
+                            </tr>
+                        @endforeach
+                        @empty($semester)
+                            <tr>
+                                <td colspan="100%" class="text-center">No data semesters available</td>
+                            </tr>
+                        @endempty
                     </tbody>
                 </table>
             </div>
 
             <!-- Footer -->
             <div class="footer">
-                © Group 8 Metro
+                © Group 8 Matdis
             </div>
         </div>
     @else
-        <div class="login-container">
+        <div class="login-container my-auto">
           <div class="login-box">
             <h1>Welcome to <span class="brand">FAKESPOT</span></h1>
             <p>Please Login First</p>
@@ -387,5 +393,7 @@
           </div>
         </div>
     @endif
+
+    <script src="{{ asset('bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 </body>
 </html>

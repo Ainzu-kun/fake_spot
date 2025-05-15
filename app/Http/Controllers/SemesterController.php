@@ -20,15 +20,14 @@ class SemesterController extends Controller
 
     public function store(Request $request) {
         $request->validate([
-            'semester' => 'required|string|max:255',
-            'tahun_ajaran' => 'required|string|max:255',
+            'semester' => 'required|string|max:16',
+            'tahun_ajaran' => 'required|string',
         ], [
             'semester.required' => 'Semester is required.',
             'semester.string' => 'Semester must be a string.',
-            'semester.max' => 'Semester must not exceed 255 characters.',
+            'semester.max' => 'Semester must not exceed 16 characters.',
             'tahun_ajaran.required' => 'Tahun Ajaran is required.',
             'tahun_ajaran.string' => 'Tahun Ajaran must be a string.',
-            'tahun_ajaran.max' => 'Tahun Ajaran must not exceed 255 characters.',
         ]);
 
         Semester::create($request->all());

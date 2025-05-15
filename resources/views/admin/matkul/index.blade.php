@@ -234,7 +234,7 @@
         <div class="container-fluid">
             <!-- Logo -->
             <a class="navbar-brand" href="#">
-                <img src="{{ asset('assets/img/Logo FS.png') }}" alt="FAKESPOT" class="logo-fakespot">
+                <img src="{{ asset('assets/img/Logo_FS.png') }}" alt="FAKESPOT" class="logo-fakespot">
             </a>
             
             <!-- Toggler untuk tampilan mobile -->
@@ -277,7 +277,7 @@
         <!-- Welcome Banner -->
         <div class="welcome-banner">
             <div class="welcome-background">
-                <img src="{{ asset('assets/img/Logo FS.png') }}" alt="Logo Background">
+                <img src="{{ asset('assets/img/Logo_FS.png') }}" alt="Logo Background">
             </div>
             <div class="welcome-character2">
                 <img src="{{ asset('assets/img/subjects.png') }}" alt="Patrick UPI">

@@ -130,7 +130,7 @@
         <div class="container-fluid">
             <!-- Logo -->
             <a class="navbar-brand" href="#">
-                <img src="{{ asset('assets/img/Logo FS.png') }}" alt="FAKESPOT" class="logo-fakespot">
+                <img src="{{ asset('assets/img/Logo_FS.png') }}" alt="FAKESPOT" class="logo-fakespot">
             </a>
             
             <!-- Toggler untuk tampilan mobile -->
@@ -167,9 +167,7 @@
     </nav>
 
     <div class="mb-3">
-        <a href="{{ route('matkul.index') }}" class="btn btn-back">
-            <i class="fas fa-angle-left"></i> Back
-        </a>
+        <a href="{{ route('matkul.index') }}" class="btn btn-back">Back<i class="fas fa-angle-right"></i></a>
     </div>
     <div class="form-container">
         <h2 class="text-center mb-4">Create Subject Data</h2>
