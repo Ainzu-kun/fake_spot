@@ -24,20 +24,50 @@
     <div>
 
         {{-- Header start --}}
-        <header class="bg-black flex justify-between items-center px-6 py-4 mb-6">
-            <div class="flex items-center space-x-1">
-                <span class="font-orbitron text-red-600 text-xl font-extrabold italic select-none">Fake</span>
-                <span
-                    class="font-orbitron text-red-600 text-xl font-extrabold italic border border-red-600 rounded-md px-2 py-[2px] select-none">SPOT</span>
+        <header class="bg-black px-6 py-4 mb-6">
+            <div class="flex justify-between items-center">
+                <!-- Logo -->
+                <div class="flex items-center space-x-1">
+                    <span class="font-orbitron text-red-600 text-xl font-extrabold italic select-none">Fake</span>
+                    <span class="font-orbitron text-red-600 text-xl font-extrabold italic border border-red-600 rounded-md px-2 py-[2px] select-none">SPOT</span>
+                </div>
+
+                <!-- Hamburger (muncul di < md) -->
+                <button id="menuBtn" class="md:hidden text-white focus:outline-none">
+                    <!-- ikon hamburger -->
+                    <svg id="iconHamburger" class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2"
+                        viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M4 6h16M4 12h16M4 18h16" />
+                    </svg>
+                    <!-- ikon close (default tersembunyi) -->
+                    <svg id="iconClose" class="w-6 h-6 hidden" fill="none" stroke="currentColor" stroke-width="2"
+                        viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                </button>
+
+                <!-- Menu desktop -->
+                <div class="hidden md:flex items-center space-x-8">
+                    <nav class="flex items-center space-x-8 text-gray-400 text-sm font-normal">
+                        <a href="{{ route('dosen.dashboard', ['dosen_id' => $dosen->id]) }}" class="hover:text-white">Dashboard</a>
+                        <a href="{{ route('mahasiswa.index', ['dosen_id' => $dosen->id]) }}" class="font-semibold text-white">Students</a>
+                        <a href="{{ route('penilaian.index', ['dosen_id' => $dosen->id]) }}" class="hover:text-white">Evaluation</a>
+                    </nav>
+                    <a href="{{ route('auth.logout') }}">
+                        <button type="button"
+                            class="bg-red-900 hover:bg-red-800 text-white text-sm font-semibold rounded-md px-4 py-2">
+                            <i class="fas fa-power-off"></i> <span>Logout</span>
+                        </button>
+                    </a>
+                </div>
             </div>
-            <div class="flex items-center space-x-8">
-                <nav class="flex items-center space-x-8 text-gray-400 text-sm font-normal">
-                    <a href="{{ route('dosen.dashboard', ['dosen_id' => $dosen->id]) }}"
-                        class="hover:text-white">Dashboard</a>
-                    <a href="{{ route('mahasiswa.index', ['dosen_id' => $dosen->id]) }}"
-                        class="font-semibold text-white">Students</a>
-                    <a href="{{ route('penilaian.index', ['dosen_id' => $dosen->id]) }}"
-                        class="hover:text-white">Evaluation</a>
+
+            <!-- Menu mobile (default: hidden) -->
+            <div id="mobileMenu" class="md:hidden max-h-0 overflow-hidden opacity-0 transition-all duration-1000 ease-in-out mt-4 flex flex-col items-center text-center gap-y-4">
+                <nav class="flex flex-col text-gray-400 text-sm font-normal space-y-2">
+                    <a href="{{ route('dosen.dashboard', ['dosen_id' => $dosen->id]) }}" class="hover:text-white">Dashboard</a>
+                    <a href="{{ route('mahasiswa.index', ['dosen_id' => $dosen->id]) }}" class="font-semibold text-white">Students</a>
+                    <a href="{{ route('penilaian.index', ['dosen_id' => $dosen->id]) }}" class="hover:text-white">Evaluation</a>
                 </nav>
                 <a href="{{ route('auth.logout') }}">
                     <button type="button"
@@ -248,6 +278,26 @@
 
             // Default view
             btnForm.click();
+        });
+
+        const btn = document.getElementById('menuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const iconBurger = document.getElementById('iconHamburger');
+        const iconClose = document.getElementById('iconClose');
+
+        btn.addEventListener('click', () => {
+            const isOpen = mobileMenu.classList.contains('max-h-0');
+
+            if (isOpen) {
+                mobileMenu.classList.remove('max-h-0', 'opacity-0');
+                mobileMenu.classList.add('max-h-[500px]', 'opacity-100');
+            } else {
+                mobileMenu.classList.add('max-h-0', 'opacity-0');
+                mobileMenu.classList.remove('max-h-[500px]', 'opacity-100');
+            }
+
+            iconBurger.classList.toggle('hidden');
+            iconClose.classList.toggle('hidden');
         });
     </script>
 </body>
