@@ -6,6 +6,8 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Fake Spot</title>
 
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Orbitron:wght@700&display=swap" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />
     <link rel="shortcut icon" href="{{ asset('assets/icon/upi.png') }}" type="image/x-icon">
     <link rel="stylesheet" href="{{ asset('bootstrap/css/bootstrap.min.css') }}">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
@@ -111,6 +113,7 @@
             background-color: #333;
         }
         .welcome-banner {
+            margin-top: 20px;
             position: relative;
             background-color: #000;
             height: 150px;
@@ -125,34 +128,14 @@
 
         .welcome-background {
             position: absolute;
-            inset: 0;
             z-index: 0;
-            opacity: 0.15;
+            opacity: 0.20;
         }
 
         .welcome-background img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-        }
-
-        .welcome-text {
-            position: relative;
-            z-index: 1;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            font-family: sans-serif;
-        }
-        .welcome-title {
-            font-size: 20px;
-            font-weight: 800;
-            font-style: italic;
-        }
-
-        .welcome-subtitle {
-            font-size: 14px;
-            margin-top: 5px;
         }
 
         .welcome-character {
@@ -166,12 +149,12 @@
         }
 
         .welcome-character img {
-            max-height: 110px;
+            max-height: 150px;
             width: auto;
         }
 
         .welcome-character2 img {
-            max-height: 110px;
+            max-height: 150px;
             width: auto;
         }
         /* Section styles */
@@ -297,11 +280,11 @@
             <div class="welcome-background">
                 <img src="{{ asset('assets/img/Logo FS.png') }}" alt="Logo Background">
             </div>
-            <div class="welcome-character">
+            <div class="welcome-character2">
                 <img src="{{ asset('assets/img/semester.png') }}" alt="Patrick UPI">
             </div>
-            <div class="welcome-character2">
-                <img src="{{ asset('assets/img/Patrik.png') }}" alt="Patrick UPI">
+            <div class="welcome-character">
+                <img src="{{ asset('assets/img/partrick_kepotong.svg') }}" alt="Patrick UPI">
             </div>
         </div>
 
