@@ -111,7 +111,7 @@
                 <a href="{{ route('auth.logout') }}">
                     <button type="button"
                         class="bg-red-900 hover:bg-red-800 text-white text-sm font-semibold rounded-md px-4 py-2">
-                        <i class="fas fa-power-off"></i> <span>Logout</span>
+                        <i class="fas fa-power-off"></i><span>Logout</span>
                     </button>
                 </a>
             </div>

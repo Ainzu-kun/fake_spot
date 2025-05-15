@@ -6,6 +6,8 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Fake Spot</title>
 
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Orbitron:wght@700&display=swap" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />
     <link rel="shortcut icon" href="{{ asset('assets/icon/upi.png') }}" type="image/x-icon">
     <link rel="stylesheet" href="{{ asset('bootstrap/css/bootstrap.min.css') }}">
     <style>
@@ -222,7 +224,7 @@
         <div class="container-fluid">
             <!-- Logo -->
             <a class="navbar-brand" href="#">
-                <img src="{{ asset('assets/img/Logo FS.png') }}" alt="FAKESPOT" class="logo-fakespot">
+                <img src="{{ asset('assets/img/Logo_FS.png') }}" alt="FAKESPOT" class="logo-fakespot">
             </a>
 
             <!-- Toggler untuk tampilan mobile -->
@@ -248,7 +250,7 @@
                         </li>
                         <li class="nav-item ms-3">
                             <a class="btn btn-logout" href="{{ route('auth.logout') }}">
-                                <i class="fas fa-power-off me-0"></i> Logout
+                                <i class="fas fa-power-off me-1"></i><span>Logout</span>
                             </a>
                         </li>
                     @else
