@@ -84,7 +84,7 @@
                 </a>
             </button>
 
-            <section class="max-w-md mx-auto bg-white rounded-xl shadow-lg p-8" style="box-shadow: 0 4px 10px rgb(0 0 0 / 0.1)">
+            <section class="max-w-md mx-auto bg-white rounded-xl shadow-lg p-8" style="box-shadow: 0 4px 10px rgb(0 0 0 / 0.3)">
                 <h1 class="text-center text-4xl font-semibold mb-6">Create student data</h1>
 
                 <div class="flex space-x-4 mb-8 justify-center mt-4">
