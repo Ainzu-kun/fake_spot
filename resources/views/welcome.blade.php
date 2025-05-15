@@ -6,6 +6,8 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Fake Spot</title>
 
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Orbitron:wght@700&display=swap" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />
     <link rel="shortcut icon" href="{{ asset('assets/icon/upi.png') }}" type="image/x-icon">
     <link rel="stylesheet" href="{{ asset('bootstrap/css/bootstrap.min.css') }}">
     <style>
@@ -110,6 +112,7 @@
             background-color: #333;
         }
         .welcome-banner {
+            margin-top: 20px;
             position: relative;
             background-color: #000;
             height: 150px;
@@ -124,9 +127,8 @@
 
         .welcome-background {
             position: absolute;
-            inset: 0;
             z-index: 0;
-            opacity: 0.15;
+            opacity: 0.20;
         }
 
         .welcome-background img {
@@ -144,7 +146,7 @@
             font-family: sans-serif;
         }
         .welcome-title {
-            font-size: 20px;
+            font-size: 40px;
             font-weight: 800;
             font-style: italic;
         }
@@ -160,7 +162,7 @@
         }
 
         .welcome-character img {
-            max-height: 110px;
+            max-height: 150px;
             width: auto;
         }
 
@@ -222,7 +224,7 @@
         <div class="container-fluid">
             <!-- Logo -->
             <a class="navbar-brand" href="#">
-                <img src="{{ asset('assets/img/Logo FS.png') }}" alt="FAKESPOT" class="logo-fakespot">
+                <img src="{{ asset('assets/img/Logo_FS.png') }}" alt="FAKESPOT" class="logo-fakespot">
             </a>
 
             <!-- Toggler untuk tampilan mobile -->
@@ -248,7 +250,7 @@
                         </li>
                         <li class="nav-item ms-3">
                             <a class="btn btn-logout" href="{{ route('auth.logout') }}">
-                                <i class="fas fa-power-off me-0"></i> Logout
+                                <i class="fas fa-power-off me-1"></i><span>Logout</span>
                             </a>
                         </li>
                     @else
@@ -264,7 +266,7 @@
             <!-- Welcome Banner -->
             <div class="welcome-banner">
                 <div class="welcome-background">
-                    <img src="{{ asset('assets/img/Logo FS.png') }}" alt="Logo Background">
+                    <img src="{{ asset('assets/img/Logo_FS.png') }}" alt="Logo Background">
                 </div>
 
                 <div class="welcome-text">
@@ -273,7 +275,7 @@
                 </div>
 
                 <div class="welcome-character">
-                    <img src="{{ asset('assets/img/Patrik.png') }}" alt="Patrick UPI">
+                    <img src="{{ asset('assets/img/partrick_kepotong.svg') }}" alt="Patrick UPI">
                 </div>
             </div>
             <!-- Subject Section -->
@@ -379,7 +381,7 @@
 
             <!-- Footer -->
             <div class="footer">
-                © Group 8 Metro
+                © Group 8 Matdis
             </div>
         </div>
     @else

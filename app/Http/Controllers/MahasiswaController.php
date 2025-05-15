@@ -144,11 +144,12 @@ class MahasiswaController extends Controller
 
     public function edit($study_id) {
         $study = Study::where('id', $study_id)->first();
+        $dosen = Dosen::where('id', $study->mataKuliah->dosen_id)->first();
         $semesters = Semester::orderBy('tahun_ajaran', 'desc')
                             ->orderBy('semester', 'asc')
                             ->get();
 
-        return view('dosen.mahasiswa.edit', compact('study', 'semesters'));
+        return view('dosen.mahasiswa.edit', compact('study', 'semesters', 'dosen'));
     }
 
     public function update(Request $request, $study_id) {

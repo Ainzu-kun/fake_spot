@@ -7,20 +7,21 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Fake Spot</title>
 
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Orbitron:wght@700&display=swap" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />
     <link rel="shortcut icon" href="{{ asset('assets/icon/upi.png') }}" type="image/x-icon">
     <link rel="stylesheet" href="{{ asset('bootstrap/css/bootstrap.min.css') }}">
     <style>
         body {
             background-color: #ffffff;
             margin: 0;
-            font-family: Arial, sans-serif;
+            font-family: 'Inter', sans-serif;
             min-height: 100vh;
             display: flex;
             flex-direction: column;
             padding-top: 75px;
         }
 
-        /* Custom styles untuk navbar */
         .navbar-custom {
             background-color: #000000;
             padding: 15px 20px;
@@ -57,23 +58,19 @@
             align-items: center;
             justify-content: center;
             font-size: 16px;
-            line-height: 1;
             height: 40px;
         }
 
         .btn-logout:hover {
             background-color: #a00000;
-            color: white;
         }
 
-        /* Login container */
         .login-container {
             display: flex;
             justify-content: center;
             align-items: center;
         }
 
-        /* Card box */
         .login-box {
             text-align: center;
             padding: 40px;
@@ -82,19 +79,16 @@
             background-color: white;
         }
 
-        /* Title style */
         .login-box h1 {
             font-size: 1.8rem;
             margin-bottom: 10px;
         }
 
-        /* Brand logo part bold italic */
         .brand {
             font-weight: bold;
             font-style: italic;
         }
 
-        /* Button */
         .login-btn {
             background-color: #800000;
             color: white;
@@ -114,6 +108,7 @@
         }
 
         .welcome-banner {
+            margin-top: 20px;
             position: relative;
             background-color: #000;
             height: 150px;
@@ -124,15 +119,12 @@
             justify-content: space-between;
             padding: 20px 30px;
             color: white;
-            margin-top: 40px;
         }
-
 
         .welcome-background {
             position: absolute;
-            inset: 0;
             z-index: 0;
-            opacity: 0.15;
+            opacity: 0.20;
         }
 
         .welcome-background img {
@@ -147,11 +139,10 @@
             display: flex;
             flex-direction: column;
             justify-content: center;
-            font-family: sans-serif;
         }
 
         .welcome-title {
-            font-size: 20px;
+            font-size: 40px;
             font-weight: 800;
             font-style: italic;
         }
@@ -167,11 +158,10 @@
         }
 
         .welcome-character img {
-            max-height: 110px;
+            max-height: 150px;
             width: auto;
         }
 
-        /* Section styles */
         .section-title {
             font-size: 18px;
             font-weight: bold;
@@ -192,7 +182,6 @@
             font-size: 12px;
         }
 
-        /* Table styles */
         .custom-table {
             margin-top: 10px;
         }
@@ -214,7 +203,6 @@
             background-color: #f2f2f2;
         }
 
-        /* Footer styles */
         .footer {
             text-align: center;
             margin-top: 20px;
@@ -228,18 +216,15 @@
 <body>
     <nav class="navbar navbar-expand-lg navbar-custom fixed-top">
         <div class="container-fluid">
-            <!-- Logo -->
             <a class="navbar-brand" href="#">
-                <img src="{{ asset('assets/img/Logo FS.png') }}" alt="FAKESPOT" class="logo-fakespot">
+                <img src="{{ asset('assets/img/Logo_FS.png') }}" alt="FAKESPOT" class="logo-fakespot">
             </a>
 
-            <!-- Toggler untuk tampilan mobile -->
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
 
-            <!-- Menu navigasi -->
             <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
                 <ul class="navbar-nav align-items-center">
                     @if (Auth::check())
@@ -247,18 +232,16 @@
                             <a class="nav-link active" href="#">Dashboard</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('mahasiswa.index', ['dosen_id' => $dosen->id]) }}"
-                                class="btn btn-see-all">Student</a>
+                            <a class="nav-link" href="{{ route('mahasiswa.index', ['dosen_id' => $dosen->id]) }}">Student</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('daftar_dosen.index') }}">Evaluation
+                            <a class="nav-link" href="{{ route('penilaian.index', ['dosen_id' => $dosen->id]) }}">Evaluation</a>
                         </li>
                         <li class="nav-item ms-3">
                             <a class="btn btn-logout" href="{{ route('auth.logout') }}">
-                                <i class="fas fa-power-off me-0"></i> Logout
+                                <i class="fas fa-power-off me-1"></i><span>Logout</span>
                             </a>
                         </li>
-                    @else
                     @endif
                 </ul>
             </div>
@@ -266,28 +249,29 @@
     </nav>
 
     @if (Auth::check())
-        <!-- Main Content -->
         <div class="container">
             <!-- Welcome Banner -->
             <div class="welcome-banner">
                 <div class="welcome-background">
-                    <img src="{{ asset('assets/img/Logo FS.png') }}" alt="Logo Background">
+                    <img src="{{ asset('assets/img/Logo_FS.png') }}" alt="Logo Background">
                 </div>
 
                 <div class="welcome-text">
-                    <div class="welcome-title">WELCOME {{ Auth::user()->username }} Harusnya Nama</div>
-                    <div class="welcome-subtitle">You teach the subject of perwibuan</div>
+                    <div class="welcome-title">WELCOME {{ Auth::user()->username }}!</div>
+                    <div class="welcome-subtitle">Have a nice day!</div>
                 </div>
 
                 <div class="welcome-character">
-                    <img src="{{ asset('assets/img/Patrik.png') }}" alt="Patrick UPI">
+                    <img src="{{ asset('assets/img/partrick_kepotong.svg') }}" alt="Patrick UPI">
                 </div>
             </div>
+
             <!-- Student Section -->
             <div class="section-header">
                 <div class="section-title">Student</div>
-                <a href="{{ route('mahasiswa.index', ['dosen_id' => $dosen->id]) }}" class="btn btn-see-all">See all<i
-                        class="fas fa-angle-right"></i></a>
+                <a href="{{ route('mahasiswa.index', ['dosen_id' => $dosen->id]) }}" class="btn btn-see-all">
+                    See all <i class="fas fa-angle-right"></i>
+                </a>
             </div>
             <div class="table-responsive">
                 <table class="table table-bordered custom-table">
@@ -301,13 +285,15 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td>2403342</td>
-                            <td>Zaky Rizzan Zain</td>
-                            <td>2</td>
-                            <td>2024</td>
-                        </tr>
+                        @foreach ($studies as $study)
+                            <tr>
+                                <td>{{ $loop->iteration }}</td>
+                                <td>{{ $study->mahasiswa->nim }}</td>
+                                <td>{{ $study->mahasiswa->nama }}</td>
+                                <td>{{ $study->semester->semester }}</td>
+                                <td>{{ $study->semester->tahun_ajaran }}</td>
+                            </tr>
+                        @endforeach
                     </tbody>
                 </table>
             </div>
@@ -315,48 +301,69 @@
             <!-- Evaluation Section -->
             <div class="section-header">
                 <div class="section-title">Evaluation</div>
-                <a href="{{ route('penilaian.index', ["dosen_id" => $dosen->id]) }}" class="btn btn-see-all">See all <i
-                        class="fas fa-angle-right"></i></a>
+                <a href="{{ route('penilaian.index', ['dosen_id' => $dosen->id]) }}" class="btn btn-see-all">
+                    See all <i class="fas fa-angle-right"></i>
+                </a>
             </div>
             <div class="table-responsive">
                 <table class="table table-bordered custom-table">
                     <thead>
                         <tr>
-                            <th width="5%">No</th>
-                            <th width="15%">NIM</th>
-                            <th width="20%%">Student Name</th>
-                            <th width="5%">Point</th>
-                            <th width="5%">Tugas</th>
-                            <th width="5%">Pre UTS</th>
-                            <th width="5%">Kuis 1</th>
-                            <th width="5%">UTS</th>
-                            <th width="5%">Pre UAS</th>
-                            <th width="5%">Kuis 2</th>
-                            <th width="5%">UAS</th>
-                            <th width="5%">Total</th>
-                            <th width="5%">Average</th>
-                            <th width="5%">IPK</th>
-                            <th width="5%">Grade</th>
+                            <th>No</th>
+                            <th>NIM</th>
+                            <th>Student Name</th>
+                            <th>Point</th>
+                            <th>Tugas</th>
+                            <th>Pre UTS</th>
+                            <th>Kuis 1</th>
+                            <th>UTS</th>
+                            <th>Pre UAS</th>
+                            <th>Kuis 2</th>
+                            <th>UAS</th>
+                            <th>Average</th>
+                            <th>IPK</th>
+                            <th>Grade</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td>2403342</td>
-                            <td>Zaky Rizzan Zain</td>
-                            <td>100</td>
-                            <td>100</td>
-                            <td>100</td>
-                            <td>100</td>
-                            <td>100</td>
-                            <td>100</td>
-                            <td>100</td>
-                            <td>100</td>
-                            <td>100</td>
-                            <td>100</td>
-                            <td>4.00</td>
-                            <td>A</td>
-                        </tr>
+                        @foreach ($penilaians as $penilaian)
+                            {{-- count avg --}}
+                            @php
+                                $nilai = [
+                                    $penilaian->point,
+                                    $penilaian->tugas,
+                                    $penilaian->pre_uts,
+                                    $penilaian->kuis_1,
+                                    $penilaian->uts,
+                                    $penilaian->pre_uas,
+                                    $penilaian->kuis_2,
+                                    $penilaian->uas,
+                                ];
+
+                                $avg = array_sum($nilai) / count($nilai);
+                            @endphp
+                            <tr>
+                                <td>{{ $loop->iteration }}</td>
+                                <td>{{ $penilaian->studies->mahasiswa->nim }}</td>
+                                <td>{{ $penilaian->studies->mahasiswa->nama }}</td>
+                                <td>{{ $penilaian->point }}</td>
+                                <td>{{ $penilaian->tugas }}</td>
+                                <td>{{ $penilaian->pre_uts }}</td>
+                                <td>{{ $penilaian->kuis_1 }}</td>
+                                <td>{{ $penilaian->uts }}</td>
+                                <td>{{ $penilaian->pre_uas }}</td>
+                                <td>{{ $penilaian->kuis_2 }}</td>
+                                <td>{{ $penilaian->uas }}</td>
+                                <td>{{ number_format($avg, 2) }}</td>
+                                <td>{{ $penilaian->IPK }}</td>
+                                <td>{{ $penilaian->grade }}</td>
+                            </tr>
+                        @endforeach
+                        @empty('penilaian')
+                            <tr>
+                                <td colspan="100%" class="text-center">No data grade available</td>
+                            </tr>
+                        @endempty
                     </tbody>
                 </table>
             </div>
@@ -367,10 +374,13 @@
             </div>
         </div>
     @else
-        Please login first
-        <br>
-        <a href="{{ route('auth.login') }}">Login</a>
+        <div class="container text-center mt-5">
+            <p>Please login first</p>
+            <a href="{{ route('auth.login') }}">Login</a>
+        </div>
     @endif
+
+    <script src="{{ asset('bootstrap/js/bootstrap.bundle.js') }}"></script>
 </body>
 
 </html>
