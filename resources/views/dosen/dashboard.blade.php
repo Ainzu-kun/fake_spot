@@ -382,5 +382,4 @@
 
     <script src="{{ asset('bootstrap/js/bootstrap.bundle.js') }}"></script>
 </body>
-
 </html>

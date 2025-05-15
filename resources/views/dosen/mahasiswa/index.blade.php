@@ -58,22 +58,6 @@
         .custom-table tr:nth-child(odd) td {
             background-color: #f2f2f2;
         }
-
-        /* .fade-in {
-            animation: fadeIn 0.3s ease-out forwards;
-        }
-
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: scale(0.95);
-            }
-
-            to {
-                opacity: 1;
-                transform: scale(1);
-            }
-        } */
     </style>
 </head>
 
@@ -97,7 +81,7 @@
                     <a class="font-semibold text-white" href="#">
                         Students
                     </a>
-                    <a class="hover:text-white" href="#">
+                    <a class="hover:text-white" href="{{ route('penilaian.index', ['dosen_id' => $dosen->id]) }}">
                         Evaluation
                     </a>
                 </nav>
@@ -114,18 +98,12 @@
             </div>
         </header>
         <main class="bg-white mt-6 rounded-md p-6">
-            <button
-                class="flex items-center space-x-2 border border-gray-700 rounded-md px-4 py-2 text-sm text-black mb-6"
-                type="button">
-                <a href="{{ route('dosen.dashboard', ['dosen_id' => $dosen->id]) }}"
-                    class="flex items-center space-x-2">
-                    <i class="fas fa-arrow-left">
-                    </i>
-                    <span>
-                        Back
-                    </span>
-                </a>
-            </button>
+            <a href="{{ route('dosen.dashboard', ['dosen_id' => $dosen->id]) }}" class="flex items-center space-x-2">
+                <button class="flex items-center space-x-2 border border-gray-700 rounded-md px-4 py-2 text-sm text-black mb-6" type="button">
+                    <i class="fas fa-arrow-left"></i>
+                    <span>Back</span>
+                </button>
+            </a>
             <section class="mb-6">
                 <div class="flex justify-between items-center bg-black rounded-xl p-6">
                     <span
@@ -206,35 +184,29 @@
             </div>
         </main>
     </div>
-    {{-- <!-- Modal Delete Confirmation -->
-    <div id="deleteModal" class="hidden fixed inset-0 items-center justify-center bg-black bg-opacity-50 z-50">
-        <div class="bg-white rounded-2xl p-6 max-w-xs w-full text-center shadow-md">
-            <p class="text-sm text-gray-900 mb-6">Are you sure you want to delete this student?</p>
-            <div class="flex justify-center gap-4">
-                <a href="{{ route('mahasiswa.destroy', ['study_id' => $study->id]) }}"
-                    class="px-6 py-2 rounded-lg border border-black text-sm font-medium text-black hover:bg-gray-100">
-                    Yes
-                </a>
-                <button onclick="closeModal()"
-                    class="px-6 py-2 rounded-lg border border-black bg-black text-white text-sm font-medium hover:bg-gray-800">
-                    No
-                </button>
+    <!-- Modal -->
+    <div id="deleteModal" class="fixed inset-0 bg-gray-800 bg-opacity-50 hidden items-center justify-center z-50">
+        <div class="bg-white p-6 rounded-lg shadow-lg max-w-md w-full">
+            <h2 class="text-xl font-semibold mb-4 text-gray-800">Konfirmasi Hapus</h2>
+            <p class="text-gray-600 mb-6">Apakah kamu yakin ingin menghapus data ini?</p>
+
+            <div class="flex justify-end gap-4">
+                <a id="confirmDeleteBtn"
+                    class="px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700">Hapus</a>
+                <button type="button" onclick="closeModal()"
+                    class="px-4 py-2 bg-gray-300 rounded hover:bg-gray-400">Batal</button>
             </div>
-
         </div>
-    </div> --}}
+    </div>
 
-
-
-    {{-- <!-- Script -->
+    <!-- Script -->
     <script>
-        function openModal(actionUrl) {
+        function openModal(deleteUrl) {
             const modal = document.getElementById('deleteModal');
-            const form = document.getElementById('deleteForm');
-            form.action = actionUrl;
+            const confirmBtn = document.getElementById('confirmDeleteBtn');
+            confirmBtn.href = deleteUrl;
             modal.classList.remove('hidden');
             modal.classList.add('flex');
-            modal.querySelector('div.bg-white').classList.add('fade-in');
         }
 
         function closeModal() {
@@ -242,7 +214,7 @@
             modal.classList.add('hidden');
             modal.classList.remove('flex');
         }
-    </script> --}}
+    </script>
 </body>
 
 </html>
