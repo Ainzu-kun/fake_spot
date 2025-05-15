@@ -179,7 +179,7 @@
                 <label class="form-label" for="semester">Semester</label>
                 <div class="input-group">
                     <span class="input-group-text"><i class="bi bi-list-ol"></i></span>
-                    <input type="number" name="semester" id="semester" class="form-control" min="1" max="4" required>
+                    <input type="number" name="semester" id="semester" class="form-control" min="1" max="16" required>
                 </div>
             </div>
 
