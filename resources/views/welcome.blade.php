@@ -241,7 +241,7 @@
                             <a class="nav-link" href="{{ route('matkul.index') }}">Subjetcs</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('daftar_dosen.index') }}">Lectures</a>
+                            <a class="nav-link" href="{{ route('daftar_dosen.index') }}">Lecturers</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('semester.index') }}">Semester</a>
@@ -335,7 +335,7 @@
             <!-- Semester Section -->
             <div class="section-header">
                 <div class="section-title">Semester</div>
-                <a href="semester.index" class="btn btn-see-all">See all <i class="fas fa-angle-right"></i></a>
+                <a href="{{ route('semester.index') }}" class="btn btn-see-all">See all <i class="fas fa-angle-right"></i></a>
             </div>
             <div class="table-responsive">
                 <table class="table table-bordered custom-table">
