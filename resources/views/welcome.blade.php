@@ -110,6 +110,7 @@
             background-color: #333;
         }
         .welcome-banner {
+            margin-top: 20px;
             position: relative;
             background-color: #000;
             height: 150px;
@@ -124,9 +125,8 @@
 
         .welcome-background {
             position: absolute;
-            inset: 0;
             z-index: 0;
-            opacity: 0.15;
+            opacity: 0.20;
         }
 
         .welcome-background img {
@@ -144,7 +144,7 @@
             font-family: sans-serif;
         }
         .welcome-title {
-            font-size: 20px;
+            font-size: 40px;
             font-weight: 800;
             font-style: italic;
         }
@@ -160,7 +160,7 @@
         }
 
         .welcome-character img {
-            max-height: 110px;
+            max-height: 150px;
             width: auto;
         }
 
@@ -264,7 +264,7 @@
             <!-- Welcome Banner -->
             <div class="welcome-banner">
                 <div class="welcome-background">
-                    <img src="{{ asset('assets/img/Logo FS.png') }}" alt="Logo Background">
+                    <img src="{{ asset('assets/img/Logo_FS.png') }}" alt="Logo Background">
                 </div>
 
                 <div class="welcome-text">
@@ -273,7 +273,7 @@
                 </div>
 
                 <div class="welcome-character">
-                    <img src="{{ asset('assets/img/Patrik.png') }}" alt="Patrick UPI">
+                    <img src="{{ asset('assets/img/partrick_kepotong.svg') }}" alt="Patrick UPI">
                 </div>
             </div>
             <!-- Subject Section -->
@@ -379,7 +379,7 @@
 
             <!-- Footer -->
             <div class="footer">
-                © Group 8 Metro
+                © Group 8 Matdis
             </div>
         </div>
     @else

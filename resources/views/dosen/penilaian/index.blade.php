@@ -120,11 +120,11 @@
 
         {{-- Content start --}}
         <main class="bg-white mt-6 rounded-md p-6">
-            <button type="button" class="flex items-center space-x-2 border border-gray-700 rounded-md px-4 py-2 text-sm text-black mb-6">
-                <a href="{{ route('dosen.dashboard', ['dosen_id' => $dosen_id]) }}" class="flex items-center space-x-2">
+            <a href="{{ route('dosen.dashboard', ['dosen_id' => $dosen_id]) }}" class="flex items-center space-x-2">
+                <button type="button" class="flex items-center space-x-2 border border-gray-700 rounded-md px-4 py-2 text-sm text-black mb-6">
                     <i class="fas fa-arrow-left"></i> <span>Back</span>
-                </a>
-            </button>
+                </button>
+            </a>
 
             <section class="mb-6">
                 <div class="flex justify-between items-center bg-black rounded-xl px-6">
@@ -136,6 +136,14 @@
                     </div>
                 </div>
             </section>
+
+            @if (session('success'))
+                <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative mb-4"
+                    role="alert">
+                    <strong class="font-bold">Success!</strong>
+                    <span class="block sm:inline">{{ session('success') }}</span>
+                </div>
+            @endif
 
             <div class="w-full overflow-x-auto rounded-md">
                 <table class="table table-bordered custom-table text-sm w-full min-w-[800px]">
@@ -208,5 +216,27 @@
         </main>
         {{-- Content end --}}
     </div>
+
+    <script>
+        const btn = document.getElementById('menuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const iconBurger = document.getElementById('iconHamburger');
+        const iconClose = document.getElementById('iconClose');
+
+        btn.addEventListener('click', () => {
+            const isOpen = mobileMenu.classList.contains('max-h-0');
+
+            if (isOpen) {
+                mobileMenu.classList.remove('max-h-0', 'opacity-0');
+                mobileMenu.classList.add('max-h-[500px]', 'opacity-100');
+            } else {
+                mobileMenu.classList.add('max-h-0', 'opacity-0');
+                mobileMenu.classList.remove('max-h-[500px]', 'opacity-100');
+            }
+
+            iconBurger.classList.toggle('hidden');
+            iconClose.classList.toggle('hidden');
+        });
+    </script>
 </body>
 </html>

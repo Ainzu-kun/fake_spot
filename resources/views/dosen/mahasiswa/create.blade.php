@@ -78,11 +78,11 @@
 
         {{-- Content start --}}
         <main class="bg-white mt-6 rounded-md p-6">
-            <button type="button" class="flex items-center space-x-2 border border-gray-700 rounded-md px-4 py-2 text-sm text-black mb-6">
-                <a href="{{ route('mahasiswa.index', ['dosen_id' => $dosen->id]) }}" class="flex items-center space-x-2">
+            <a href="{{ route('mahasiswa.index', ['dosen_id' => $dosen->id]) }}" class="flex items-center space-x-2">
+                <button type="button" class="flex items-center space-x-2 border border-gray-700 rounded-md px-4 py-2 text-sm text-black mb-6">
                     <i class="fas fa-arrow-left"></i> <span>Back</span>
-                </a>
-            </button>
+                </button>
+            </a>
 
             <section class="max-w-md mx-auto bg-white rounded-xl shadow-lg p-8" style="box-shadow: 0 4px 10px rgb(0 0 0 / 0.3)">
                 <h1 class="text-center text-4xl font-semibold mb-6">Create student data</h1>
