@@ -29,8 +29,8 @@
             <div class="flex items-center space-x-8">
                 <nav class="flex items-center space-x-8 text-gray-400 text-sm font-normal">
                     <a href="{{ route('dosen.dashboard', ['dosen_id' => $dosen->id]) }}" class="hover:text-white">Dashboard</a>
-                    <a href="#" class="font-semibold text-white">Students</a>
-                    <a href="#" class="hover:text-white">Evaluation</a>
+                    <a href="{{ route('mahasiswa.index', ['dosen_id' => $dosen->id]) }}" class="font-semibold text-white">Students</a>
+                    <a href="{{ route('penilaian.index', ['dosen_id' => $dosen->id]) }}" class="hover:text-white">Evaluation</a>
                 </nav>
                 <a href="{{ route('auth.logout') }}">
                     <button type="button" class="bg-red-900 hover:bg-red-800 text-white text-sm font-semibold rounded-md px-4 py-2">
@@ -44,7 +44,7 @@
         {{-- Content start --}}
         <main class="bg-white mt-6 rounded-md p-6">
             <button type="button" class="flex items-center space-x-2 border border-gray-700 rounded-md px-4 py-2 text-sm text-black mb-6">
-                <a href="{{ route('dosen.dashboard', ['dosen_id' => $dosen->id]) }}" class="flex items-center space-x-2">
+                <a href="{{ route('mahasiswa.index', ['dosen_id' => $dosen->id]) }}" class="flex items-center space-x-2">
                     <i class="fas fa-arrow-left"></i> <span>Back</span>
                 </a>
             </button>
