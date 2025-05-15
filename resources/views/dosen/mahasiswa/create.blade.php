@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,7 +9,8 @@
 
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Orbitron:wght@700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Orbitron:wght@700&display=swap"
+        rel="stylesheet" />
     <link rel="shortcut icon" href="{{ asset('assets/icon/upi.png') }}" type="image/x-icon">
 
     <style>
@@ -17,6 +19,7 @@
         }
     </style>
 </head>
+
 <body>
     <div>
 
@@ -88,19 +91,25 @@
                 <h1 class="text-center text-4xl font-semibold mb-6">Create student data</h1>
 
                 <div class="flex space-x-4 mb-8 justify-center mt-4">
-                    <button id="btnForm" type="button" onclick="showForm()" class="bg-white text-black font-semibold rounded-lg px-20 py-3 shadow-[0_4px_10px_rgb(0,0,0,0.15)]">Form</button>
-                    <button id="btnCSV" type="button" onclick="showCSV()" class="bg-black text-white font-semibold rounded-lg px-20 py-3 shadow-[0_4px_10px_rgb(0,0,0,0.15)]">CSV</button>
+                    <button id="btnForm" type="button" onclick="showForm()"
+                        class="bg-white text-black font-semibold rounded-lg px-20 py-3 shadow-[0_4px_10px_rgb(0,0,0,0.15)]">Form</button>
+                    <button id="btnCSV" type="button" onclick="showCSV()"
+                        class="bg-black text-white font-semibold rounded-lg px-20 py-3 shadow-[0_4px_10px_rgb(0,0,0,0.15)]">CSV</button>
                 </div>
 
                 {{-- form input manual --}}
                 <div id="formContainer" class="space-y-6 hidden">
-                    <form action="{{ route('mahasiswa.store', ['dosen_id' => $dosen->id]) }}" method="post" class="space-y-6">
+                    <form action="{{ route('mahasiswa.store', ['dosen_id' => $dosen->id]) }}" method="post"
+                        class="space-y-6">
                         @csrf
                         <div class="mb-4">
                             <label for="nama" class="block text-sm font-semibold mb-1">Student Name</label>
                             <div class="relative">
-                                <span class="absolute inset-y-0 left-3 flex items-center text-gray-400"><i class="fas fa-user"></i></span>
-                                <input name="nama" type="text" placeholder="Enter student name" class="w-full border border-gray-300 rounded-md py-3 pl-10 pr-3 text-sm placeholder-gray-400 focus:outline-none focus:ring-1 focus:ring-black" required />
+                                <span class="absolute inset-y-0 left-3 flex items-center text-gray-400"><i
+                                        class="fas fa-user"></i></span>
+                                <input name="nama" type="text" placeholder="Enter student name"
+                                    class="w-full border border-gray-300 rounded-md py-3 pl-10 pr-3 text-sm placeholder-gray-400 focus:outline-none focus:ring-1 focus:ring-black"
+                                    required />
                             </div>
                             @error('nama')
                                 <span class="text-red-500 text-xs mt-1">{{ $message }}</span>
@@ -109,8 +118,11 @@
                         <div class="mb-4">
                             <label for="nim" class="block text-sm font-semibold mb-1">NIM</label>
                             <div class="relative">
-                                <span class="absolute inset-y-0 left-3 flex items-center text-gray-400"><i class="fas fa-hashtag"></i></span>
-                                <input name="nim" type="text" placeholder="Enter NIM" class="w-full border border-gray-300 rounded-md py-3 pl-10 pr-3 text-sm placeholder-gray-400 focus:outline-none focus:ring-1 focus:ring-black" required />
+                                <span class="absolute inset-y-0 left-3 flex items-center text-gray-400"><i
+                                        class="fas fa-hashtag"></i></span>
+                                <input name="nim" type="text" placeholder="Enter NIM"
+                                    class="w-full border border-gray-300 rounded-md py-3 pl-10 pr-3 text-sm placeholder-gray-400 focus:outline-none focus:ring-1 focus:ring-black"
+                                    required />
                             </div>
                             @error('nim')
                                 <span class="text-red-500 text-xs mt-1">{{ $message }}</span>
@@ -119,11 +131,15 @@
                         <div class="mb-4">
                             <label for="semester_id" class="block text-sm font-semibold mb-1">Semester</label>
                             <div class="relative">
-                                <span class="absolute inset-y-0 left-3 flex items-center text-gray-400"><i class="far fa-clock"></i></span>
-                                <select name="semester_id" class="w-full border border-gray-300 rounded-md py-3 pl-10 pr-8 text-sm text-[#010101] appearance-none focus:outline-none focus:ring-1 focus:ring-black" required >
+                                <span class="absolute inset-y-0 left-3 flex items-center text-gray-400"><i
+                                        class="far fa-clock"></i></span>
+                                <select name="semester_id"
+                                    class="w-full border border-gray-300 rounded-md py-3 pl-10 pr-8 text-sm text-[#010101] appearance-none focus:outline-none focus:ring-1 focus:ring-black"
+                                    required>
                                     <option disabled selected>Choose semester credit unit</option>
                                     @foreach ($semesters as $semester)
-                                        <option value="{{ $semester->id }}">{{ $semester->semester }} ({{ $semester->tahun_ajaran }})</option>
+                                        <option value="{{ $semester->id }}">{{ $semester->semester }}
+                                            ({{ $semester->tahun_ajaran }})</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -132,29 +148,38 @@
                             @enderror
                         </div>
                         <div class="mt-8">
-                            <button type="submit" class="w-full bg-black text-white rounded-md py-3 font-medium text-sm">Add</button>
+                            <button type="submit"
+                                class="w-full bg-black text-white rounded-md py-3 font-medium text-sm">Add</button>
                         </div>
                     </form>
                 </div>
 
                 <div id="csvContainer" class="space-y-6">
-                    <form action="{{ route('mahasiswa.import', ['dosen_id' => $dosen->id]) }}" method="post" enctype="multipart/form-data">
+                    <form action="{{ route('mahasiswa.import', ['dosen_id' => $dosen->id]) }}" method="post"
+                        enctype="multipart/form-data">
                         @csrf
                         <div class="mb-4">
-                            <label for="download_template" class="block text-sm font-bold mb-1">Download Template</label>
-                            <a href="{{ route('mahasiswa.download_template') }}" class="w-full inline-block bg-black text-white rounded-md py-3 px-4 text-sm font-semibold hover:bg-gray-800 transition text-center">
+                            <label for="download_template" class="block text-sm font-bold mb-1">Download
+                                Template</label>
+                            <a href="{{ route('mahasiswa.download_template') }}"
+                                class="w-full inline-block bg-black text-white rounded-md py-3 px-4 text-sm font-semibold hover:bg-gray-800 transition text-center">
                                 <i class="fas fa-download mr-2"></i> Download
                             </a>
-                            <p class="text-gray-500 text-xs mt-2">*Make sure the data content and format match the template provided.</p>
+                            <p class="text-gray-500 text-xs mt-2">*Make sure the data content and format match the
+                                template provided.</p>
                         </div>
                         <div class="mb-4">
                             <label for="semester_id" class="block text-sm font-semibold mb-1">Semester</label>
                             <div class="relative">
-                                <span class="absolute inset-y-0 left-3 flex items-center text-gray-400"><i class="far fa-clock"></i></span>
-                                <select name="semester_id" class="w-full border border-gray-300 rounded-md py-3 pl-10 pr-8 text-sm text-[#000] appearance-none focus:outline-none focus:ring-1 focus:ring-black" required >
+                                <span class="absolute inset-y-0 left-3 flex items-center text-gray-400"><i
+                                        class="far fa-clock"></i></span>
+                                <select name="semester_id"
+                                    class="w-full border border-gray-300 rounded-md py-3 pl-10 pr-8 text-sm text-[#000] appearance-none focus:outline-none focus:ring-1 focus:ring-black"
+                                    required>
                                     <option disabled selected>Choose semester credit unit</option>
                                     @foreach ($semesters as $semester)
-                                        <option value="{{ $semester->id }}">{{ $semester->semester }} ({{ $semester->tahun_ajaran }})</option>
+                                        <option value="{{ $semester->id }}">{{ $semester->semester }}
+                                            ({{ $semester->tahun_ajaran }})</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -164,9 +189,11 @@
                         </div>
                         <div class="mb-4">
                             <label for="file">Upload student data</label>
-                            <label class="w-full bg-black text-white rounded-md py-3 px-4 text-sm font-semibold hover:bg-gray-800 transition flex items-center cursor-pointer">
+                            <label
+                                class="w-full bg-black text-white rounded-md py-3 px-4 text-sm font-semibold hover:bg-gray-800 transition flex items-center cursor-pointer">
                                 <span id="csvFileName" class="flex-1 text-left">Choose file</span>
-                                <input name="file" type="file" accept=".csv" required class="hidden" onchange="handleFileChange(this)">
+                                <input name="file" type="file" accept=".csv" required class="hidden"
+                                    onchange="handleFileChange(this)">
                             </label>
                             <p class="text-gray-500 text-xs mt-2">*Maximum size of upload data file (5MB)</p>
                             @error('file')
@@ -181,7 +208,8 @@
                             @endif
                         </div>
                         <div class="mt-8">
-                            <button type="submit" class="w-full bg-black text-white rounded-md py-3 font-medium text-sm">Add</button>
+                            <button type="submit"
+                                class="w-full bg-black text-white rounded-md py-3 font-medium text-sm">Add</button>
                         </div>
                     </form>
                 </div>
@@ -206,7 +234,7 @@
             }
         }
 
-        document.addEventListener("DOMContentLoaded", function () {
+        document.addEventListener("DOMContentLoaded", function() {
             const btnForm = document.getElementById("btnForm");
             const btnCSV = document.getElementById("btnCSV");
             const formContainer = document.getElementById("formContainer");
@@ -219,7 +247,7 @@
                 });
             }
 
-            btnForm.addEventListener("click", function () {
+            btnForm.addEventListener("click", function() {
                 formContainer.classList.remove("hidden");
                 csvContainer.classList.add("hidden");
 
@@ -232,7 +260,7 @@
                 setDisabledFields(csvContainer, true);
             });
 
-            btnCSV.addEventListener("click", function () {
+            btnCSV.addEventListener("click", function() {
                 csvContainer.classList.remove("hidden");
                 formContainer.classList.add("hidden");
 
@@ -270,4 +298,5 @@
         });
     </script>
 </body>
+
 </html>
