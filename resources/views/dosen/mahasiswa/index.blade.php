@@ -178,18 +178,18 @@
                             <td>{{ $study->semester->tahun_ajaran }}</td>
                             <td class=" space-x-5">
                                 <a href="{{ route('mahasiswa.edit', ['study_id' => $study->id]) }}"
-                                    class="text-black hover:text-gray-700">
+                                    class="text-black hover:text-gray-700" title="Edit">
                                     <i class="fas fa-edit">
                                     </i>
                                 </a>
                                 <a href="{{ route('penilaian.edit', ['dosen_id' => $dosen->id, 'penilaian_id' => $study->nilai->id]) }}"
-                                    class="text-blue-600 hover:text-blue-700">
+                                    class="text-blue-600 hover:text-blue-700" title="View Student Value">
                                     <i class="fas fa-user"></i>
                                 </a>
 
                                 <a href="javascript:void(0);"
                                     onclick="openModal('{{ route('mahasiswa.destroy', ['study_id' => $study->id]) }}')"
-                                    class="text-red-600 hover:text-red-700">
+                                    class="text-red-600 hover:text-red-700" title="Delete">
                                     <i class="fas fa-trash-alt"></i>
                                 </a>
 

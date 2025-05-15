@@ -94,7 +94,7 @@
                             </span>
                             <select name="semester_id" required
                                 class="w-full border border-gray-300 rounded-md py-3 pl-10 pr-8 text-sm text-[#010101] appearance-none focus:outline-none focus:ring-1 focus:ring-black">
-                                <option disabled selected>Choose semester credit unit</option>
+                                <option disabled selected>Choose semester</option>
                                 @foreach ($semesters as $semester)
                                     <option value="{{ $semester->id }}">{{ $semester->semester }}
                                         ({{ $semester->tahun_ajaran }})

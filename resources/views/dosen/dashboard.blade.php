@@ -315,7 +315,7 @@
             <!-- Evaluation Section -->
             <div class="section-header">
                 <div class="section-title">Evaluation</div>
-                <a href="{{ route('daftar_dosen.index') }}" class="btn btn-see-all">See all <i
+                <a href="{{ route('penilaian.index', ["dosen_id" => $dosen->id]) }}" class="btn btn-see-all">See all <i
                         class="fas fa-angle-right"></i></a>
             </div>
             <div class="table-responsive">
