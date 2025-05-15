@@ -8,6 +8,7 @@
 
     <link rel="shortcut icon" href="{{ asset('assets/icon/upi.png') }}" type="image/x-icon">
     <link rel="stylesheet" href="{{ asset('bootstrap/css/bootstrap.min.css') }}">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
     <style>
     body {
@@ -24,28 +25,28 @@
             background-color: #000000;
             padding: 15px 20px;
         }
-        
+
         .navbar-brand {
             font-weight: bold;
             padding: 0;
         }
-        
+
         .logo-fakespot {
             height: 40px;
             max-width: 100%;
         }
-        
+
         .navbar-nav .nav-link {
             color: #9e9e9e;
             margin-left: 15px;
             font-size: 14px;
         }
-        
-        .navbar-nav .nav-link:hover, 
+
+        .navbar-nav .nav-link:hover,
         .navbar-nav .nav-link.active {
             color: #ffffff;
         }
-        
+
         .btn-logout {
             background-color: #800000;
             color: white;
@@ -59,7 +60,7 @@
             line-height: 1;
             height: 40px;
         }
-        
+
         .btn-logout:hover {
             background-color: #a00000;
             color: white;
@@ -126,18 +127,18 @@
         </style>
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-custom fixed-top" >
+    <nav class="navbar navbar-expand-lg navbar-custom navbar-dark fixed-top" >
         <div class="container-fluid">
             <!-- Logo -->
-            <a class="navbar-brand" href="#">
+            <a class="navbar-brand" href="{{ route('admin.dashboard') }}">
                 <img src="{{ asset('assets/img/Logo_FS.png') }}" alt="FAKESPOT" class="logo-fakespot">
             </a>
-            
+
             <!-- Toggler untuk tampilan mobile -->
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            
+
             <!-- Menu navigasi -->
             <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
                 <ul class="navbar-nav align-items-center">
@@ -156,10 +157,9 @@
                         </li>
                         <li class="nav-item ms-3">
                             <a class="btn btn-logout" href="{{ route('auth.logout') }}">
-                                <i class="fas fa-power-off me-0"></i> Logout
+                                <i class="fas fa-power-off me-1"></i> Logout
                             </a>
                         </li>
-                    @else
                     @endif
                 </ul>
             </div>
@@ -167,11 +167,11 @@
     </nav>
 
     <div class="mb-3">
-        <a href="{{ route('matkul.index') }}" class="btn btn-back">Back<i class="fas fa-angle-right"></i></a>
+        <a href="{{ route('matkul.index') }}" class="btn btn-back"><i class="fas fa-arrow-left me-1"></i>Back</a>
     </div>
     <div class="form-container">
         <h2 class="text-center mb-4">Create Subject Data</h2>
-        
+
         <form action="{{ route('matkul.store') }}" method="POST">
             @csrf
 
@@ -204,7 +204,7 @@
                     <span class="input-group-text">
                         <i class="bi bi-clock"></i>
                     </span>
-                    <input type="number" name="sks" class="form-control" placeholder="Contoh: 3" required>
+                    <input type="number" name="sks" class="form-control" placeholder="Contoh: 3" min="1" max="4" required>
                 </div>
             </div>
 
@@ -228,5 +228,7 @@
             <button type="submit" class="btn btn-dark w-100">Add</button>
         </form>
     </div>
+
+    <script src="{{ asset('bootstrap/js/bootstrap.bundle.js') }}"></script>
 </body>
 </html>

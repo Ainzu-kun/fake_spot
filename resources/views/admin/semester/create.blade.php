@@ -8,14 +8,15 @@
 
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Orbitron:wght@700&display=swap" rel="stylesheet" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
     <link rel="shortcut icon" href="{{ asset('assets/icon/upi.png') }}" type="image/x-icon">
     <link rel="stylesheet" href="{{ asset('bootstrap/css/bootstrap.min.css') }}">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+
     <style>
-    body {
+        body {
             background-color: #ffffff;
             margin: 0;
-            font-family: Arial, sans-serif;
+            font-family: 'Inter', sans-serif;
             min-height: 100vh;
             display: flex;
             flex-direction: column;
@@ -26,28 +27,28 @@
             background-color: #000000;
             padding: 15px 20px;
         }
-        
+
         .navbar-brand {
             font-weight: bold;
             padding: 0;
         }
-        
+
         .logo-fakespot {
             height: 40px;
             max-width: 100%;
         }
-        
+
         .navbar-nav .nav-link {
             color: #9e9e9e;
             margin-left: 15px;
             font-size: 14px;
         }
-        
-        .navbar-nav .nav-link:hover, 
+
+        .navbar-nav .nav-link:hover,
         .navbar-nav .nav-link.active {
             color: #ffffff;
         }
-        
+
         .btn-logout {
             background-color: #800000;
             color: white;
@@ -61,7 +62,7 @@
             line-height: 1;
             height: 40px;
         }
-        
+
         .btn-logout:hover {
             background-color: #a00000;
             color: white;
@@ -81,10 +82,10 @@
         .form-container {
             width: 100%;
             max-width: 600px;
-            margin: 20px auto;
+            margin: 40px auto;
             padding: 50px;
             border-radius: 15px;
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
             background-color: #fff;
         }
 
@@ -124,59 +125,55 @@
         .form-control, .form-select {
             padding-left: 0.5rem;
         }
-        </style>
+    </style>
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-custom fixed-top" >
+    <nav class="navbar navbar-expand-lg navbar-custom navbar-dark fixed-top" >
         <div class="container-fluid">
             <!-- Logo -->
-            <a class="navbar-brand" href="#">
+            <a class="navbar-brand" href="{{ route('admin.dashboard') }}">
                 <img src="{{ asset('assets/img/Logo_FS.png') }}" alt="FAKESPOT" class="logo-fakespot">
             </a>
-            
+
             <!-- Toggler untuk tampilan mobile -->
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            
+
             <!-- Menu navigasi -->
             <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
                 <ul class="navbar-nav align-items-center">
-                    @if (Auth::check())
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('admin.dashboard') }}">Dashboard</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('matkul.index') }}">Subjetcs</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('daftar_dosen.index') }}">Lecturers</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link active" href="{{ route('semester.index') }}">Semester</a>
-                        </li>
-                        <li class="nav-item ms-3">
-                            <a class="btn btn-logout" href="{{ route('auth.logout') }}">
-                                <i class="fas fa-power-off me-0"></i> Logout
-                            </a>
-                        </li>
-                    @else
-                    @endif
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('admin.dashboard') }}">Dashboard</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('matkul.index') }}">Subjetcs</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('daftar_dosen.index') }}">Lecturers</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="{{ route('semester.index') }}">Semester</a>
+                    </li>
+                    <li class="nav-item ms-3">
+                        <a class="btn btn-logout" href="{{ route('auth.logout') }}">
+                            <i class="fas fa-power-off me-1"></i> Logout
+                        </a>
+                    </li>
                 </ul>
             </div>
         </div>
     </nav>
 
     <div class="mb-3">
-        <a href="{{ route('semester.index') }}" class="btn btn-back">Back<i class="fas fa-angle-right"></i></a>
+        <a href="{{ route('semester.index') }}" class="btn btn-back"><i class="fas fa-arrow-left me-1"></i>Back</a>
     </div>
-        
+
     <div class="form-container">
         <h2 class="text-center mb-4">Create Semester</h2>
-        
+
         <form action="{{ route('semester.store') }}" method="POST">
             @csrf
-        
             <!-- Input Semester -->
             <div class="form-group mb-3">
                 <label class="form-label" for="semester">Semester</label>
@@ -185,13 +182,13 @@
                     <input type="number" name="semester" id="semester" class="form-control" min="1" max="4" required>
                 </div>
             </div>
-        
+
             <!-- Input Tahun Ajaran -->
             <div class="form-group mb-4">
                 <label class="form-label" for="tahun_ajaran">Academic Year</label>
                 <div class="input-group">
                     <span class="input-group-text"><i class="bi bi-calendar"></i></span>
-                    <select name="tahun_ajaran" id="tahun_ajaran" class="form-select" required>
+                    <select name="tahun_ajaran" id="tahun_ajaran" class="form-select" required />
                         <option disabled selected>Choose Academic Year</option>
                         @for ($year = 2017; $year <= 2026; $year++)
                             <option value="{{ $year }}">{{ $year }}</option>
@@ -199,10 +196,12 @@
                     </select>
                 </div>
             </div>
-        
+
             <!-- Tombol Submit -->
             <button type="submit" class="btn btn-dark w-100">Add Semester</button>
         </form>
     </div>
+
+    <script src="{{ asset('bootstrap/js/bootstrap.bundle.js') }}"></script>
 </body>
 </html>

@@ -137,7 +137,6 @@
             @endif
             <div class="table-responsive">
                 <table class="table table-bordered custom-table">
-
                     <tr>
                         <th width="5%">No</th>
                         <th width="25%">NIM</th>

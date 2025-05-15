@@ -10,8 +10,9 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />
     <link rel="shortcut icon" href="{{ asset('assets/icon/upi.png') }}" type="image/x-icon">
     <link rel="stylesheet" href="{{ asset('bootstrap/css/bootstrap.min.css') }}">
+
     <style>
-    body {
+        body {
             background-color: #ffffff;
             margin: 0;
             font-family: Arial, sans-serif;
@@ -25,28 +26,28 @@
             background-color: #000000;
             padding: 15px 20px;
         }
-        
+
         .navbar-brand {
             font-weight: bold;
             padding: 0;
         }
-        
+
         .logo-fakespot {
             height: 40px;
             max-width: 100%;
         }
-        
+
         .navbar-nav .nav-link {
             color: #9e9e9e;
             margin-left: 15px;
             font-size: 14px;
         }
-        
-        .navbar-nav .nav-link:hover, 
+
+        .navbar-nav .nav-link:hover,
         .navbar-nav .nav-link.active {
             color: #ffffff;
         }
-        
+
         .btn-logout {
             background-color: #800000;
             color: white;
@@ -60,7 +61,7 @@
             line-height: 1;
             height: 40px;
         }
-        
+
         .btn-logout:hover {
             background-color: #a00000;
             color: white;
@@ -162,13 +163,13 @@
             font-weight: bold;
             margin: 25px 0 15px 0;
         }
-        
+
         .section-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
-        
+
         .btn-see-all {
             background-color: #f8f9fa;
             border: 1px solid #ced4da;
@@ -191,24 +192,24 @@
         .custom-table {
             margin-top: 20px;
         }
-        
+
         .custom-table th {
             background-color: #000000;
             color: white;
             text-align: center;
             padding: 8px;
         }
-        
+
         .custom-table td {
             padding: 8px;
             text-align: center;
             background-color: white;
         }
-        
+
         .custom-table tr:nth-child(odd) td {
             background-color: #f2f2f2;
         }
-        
+
         /* Footer styles */
         .footer {
             text-align: center;
@@ -220,18 +221,18 @@
     </style>
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-custom fixed-top" >
+    <nav class="navbar navbar-expand-lg navbar-custom navbar-dark fixed-top" >
         <div class="container-fluid">
             <!-- Logo -->
             <a class="navbar-brand" href="#">
                 <img src="{{ asset('assets/img/Logo_FS.png') }}" alt="FAKESPOT" class="logo-fakespot">
             </a>
-            
+
             <!-- Toggler untuk tampilan mobile -->
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            
+
             <!-- Menu navigasi -->
             <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
                 <ul class="navbar-nav align-items-center">
@@ -250,10 +251,9 @@
                         </li>
                         <li class="nav-item ms-3">
                             <a class="btn btn-logout" href="{{ route('auth.logout') }}">
-                                <i class="fas fa-power-off me-0"></i> Logout
+                                <i class="fas fa-power-off me-1"></i> Logout
                             </a>
                         </li>
-                    @else
                     @endif
                 </ul>
             </div>
@@ -262,7 +262,7 @@
 
     <!-- Main Content -->
     <div class="container">
-        <a href="{{ route('admin.dashboard') }}" class="btn btn-back">Back<i class="fas fa-angle-right"></i></a>
+        <a href="{{ route('admin.dashboard') }}" class="btn btn-back"><i class="fas fa-arrow-left me-1"></i>Back</a>
 
         <!-- Welcome Banner -->
         <div class="welcome-banner">
@@ -270,12 +270,17 @@
                 <img src="{{ asset('assets/img/Logo_FS.png') }}" alt="Logo Background">
             </div>
             <div class="welcome-character2">
-                <img src="{{ asset('assets/img/lecturers.png') }}" alt="Patrick UPI">
+                <img src="{{ asset('assets/img/lecturers.png') }}" alt="Patrick UPI" class="img-fluid">
             </div>
             <div class="welcome-character">
                 <img src="{{ asset('assets/img/partrick_kepotong.svg') }}" alt="Patrick UPI">
             </div>
         </div>
+
+        @if(@session('success'))
+            <p style="color: green">{{ session('success') }}</p>
+        @endif
+
         <!-- List of Lecturers Section -->
         <div class="table-responsive">
             <table class="table table-bordered custom-table">
@@ -288,6 +293,8 @@
                         <th width="15%">Jenis Kelamin</th>
                         <th width="5%">Action</th>
                     </tr>
+                </thead>
+                <tbody>
                     @foreach ($dosens as $dosen)
                         <tr>
                             <td>{{ $loop->iteration }}</td>
@@ -303,18 +310,21 @@
                             </td>
                             <td>
                                 <a href="{{ route('dosen.destroy', ['dosen_id' => $dosen->id]) }}">
-                                <img src="{{ asset('assets/icon/logo hapus.png') }}" alt="Tombol Hapus" class= "action-icon">
+                                    <img src="{{ asset('assets/icon/logo_hapus.png') }}" alt="Tombol Hapus" class= "action-icon">
                                 </a>
                             </td>
                         </tr>
                     @endforeach
-                </table>
-                @if(@session('success'))
-                   <p style="color: green">{{ session('success') }}</p>
-                @endif
-                </thead>
+                    @empty('dosen')
+                        <tr>
+                            <td colspan="100%">{{ $meessage }}</td>
+                        </tr>
+                    @endempty
+                </tbody>
             </table>
         </div>
     </div>
+
+    <script src="{{ asset('bootstrap/js/bootstrap.bundle.js') }}"></script>
 </body>
 </html>
