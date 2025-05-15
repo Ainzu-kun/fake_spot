@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
@@ -45,11 +46,11 @@ class MahasiswaController extends Controller
 
     public function import(Request $request, $dosen_id) {
         $request->validate([
-            'semester_id_csv' => 'required|exists:semesters,id',
+            'semester_id' => 'required|exists:semesters,id',
             'file' => 'required|mimes:csc,txt|max:5120',
         ], [
-            'semester_id_csv.required' => 'Semester harus dipilih.',
-            'semester_id_csv.exists' => 'Semester tidak valid.',
+            'semester_id.required' => 'Semester harus dipilih.',
+            'semester_id.exists' => 'Semester tidak valid.',
             'file.required' => 'File harus diunggah.',
             'file.mimes' => 'File harus berupa CSV',
             'file.max' => 'Ukuran file tidak boleh lebih dari 5 MB.',
@@ -86,7 +87,7 @@ class MahasiswaController extends Controller
                 $study = Study::create([
                     'mahasiswa_id' => $mahasiswa->id,
                     'mata_kuliah_id' => $mata_kuliah_id,
-                    'semester_id' => $request->semester_id_csv,
+                    'semester_id' => $request->semester_id,
                 ]);
 
                 Nilai::create([
