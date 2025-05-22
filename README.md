@@ -17,7 +17,7 @@ Follow this setup guide to setup on your local device.
 composer install
 ```
 
-Create fake_spot database
+Create `fake_spot` database
 
 Copy your .env file
 
