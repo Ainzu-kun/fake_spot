@@ -35,6 +35,15 @@ bootstrap docs: https://getbootstrap.com/docs/5.3/getting-started/introduction/
 ```
 Place the code above in the head for CSS and in the body for the JS script
 
+## Team
+
+The Fake Spot development team consists of 4 people:
+
+- Muhammad Ikshan Suherman
+- Moch. Yussar Rizky
+- Rafi Islami Pasha Dini Hari Putra
+- Zaky Rizzan Zain
+
 ## License
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
